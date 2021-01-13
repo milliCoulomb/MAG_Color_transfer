@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main(){
 	cout << "give me a bottle of rum!" << endl;
 	return 0;
 }
