@@ -13,7 +13,10 @@
 #include <cstring>
 #include <fstream>
 #include <iostream>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2882b1a289d79398a88dc523778b333fa1f555b5
 #define debug_expr(expr) if(debug_bmp_io) {                 \
     std::clog << __FILE__ ":" << __LINE__ << ": " #expr "=" \
       << (expr) << std::endl;                               \
