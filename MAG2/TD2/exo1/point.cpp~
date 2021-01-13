@@ -1,0 +1,7 @@
+#include<iostream>
+using namespace std;
+#include "classe_p.h"
+void point::affiche()
+{
+  cout << abs << " et " << ord <<endl;
+}

@@ -1,0 +1,11 @@
+#include<iostream>
+using namespace std;
+int main() {
+  int i, taille;
+  cout << "Combien de valeurs souhaiter vous allouez en mémoire ?";
+  cin >> taille;
+  int *a;
+  a= new int[taille];
+  delete[] t;
+  return 0;
+}
