@@ -10,8 +10,11 @@ class pixel : public matrice
   int rouge;
   int vert;
   int bleu;
+  int NBlines=3;
+  int NBcol=0;
  public :
-  pixel(int 3, int 1)
+  pixel();
+  
  
  
     
