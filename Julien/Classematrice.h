@@ -1,11 +1,9 @@
-#ifndef Matrice_
-#define Matrice_
 #include<iostream>
 #include<ostream>
 
-using namespace std :
+using namespace std ;
 
-class matrice {
+class Matrice {
 
 private :
 
@@ -16,10 +14,10 @@ double **matrice;
 public :
 
 //Constructeur 
-matrice(const NBligne, const NBcolonne);
+Matrice(const int NBligne_, const int NBcolonne_);
 
 //Destructeur 
-~matrice();
+~Matrice();
 
 // get et set 
 double get_NBligne() const;
@@ -29,9 +27,6 @@ void set_NBligne(const int NBligne_);
 void set_NBcolonne(const int NBcolonne_);
 
 //Surcharge opérateur
-matrice & operator=(const matrice & matrice_);
-ostream & operator<<(ostream & out, const matrice & matrice_);
+friend ostream & operator<<(ostream & out, const Matrice & matrice_);
 
-//Produit matriciel 
-double produit(matrice matrice_);
-}
+};
