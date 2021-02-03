@@ -29,17 +29,3 @@ Matrice::Matrice(const int NBligne_, const int NBcolonne_) :
 }
   cout << this <<endl;
 }
-
-
-ostream & operator<<(ostream & out, const Matrice & matrice_)
-{
-  for (int k=0; k< matrice_.get_NBligne(); k++) {
-     for (int j=0; j< matrice_.get_NBcolonne(); j++) {
-        cout << matrice_[k][j]<<endl;
-      }
-  cout << endl;
-}
-  return out;
-
-
-}
