@@ -9,6 +9,7 @@ private :
 
 int NBligne;
 int NBcolonne;
+/*double **matrice*/
 
 public :
 
@@ -20,6 +21,8 @@ Matrice(const int NBligne_, const int NBcolonne_);
 //Destructeur
 /*~Matrice();*/
 
+
+
 // get et set 
 double get_NBligne() const;
 double get_NBcolonne() const;
@@ -27,8 +30,20 @@ double get_NBcolonne() const;
 void set_NBligne(const int NBligne_);
 void set_NBcolonne(const int NBcolonne_);
 
+
+
+//Matrice en mode privée
+/*double** get_matrice() const;
+void set_matrice(const double** matrice_);*/
+
+
+
+//Affichage
+void affiche() const;
+
+
 //Surcharge opérateur
-/*friend Matrice & operator=(const Matrice & matrice_)*/
+Matrice & operator=(const Matrice & matrice_);
 
 // Produit matriciel
 /*double produitmatriciel(const Matrice & matrice_);*/
