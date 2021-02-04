@@ -19,7 +19,7 @@ double **matrice;
 Matrice(const int NBligne_, const int NBcolonne_);
 
 //Destructeur
-/*~Matrice();*/
+~Matrice();
 
 
 
@@ -46,5 +46,5 @@ void affiche() const;
 Matrice & operator=(const Matrice & matrice_);
 
 // Produit matriciel
-/*double produitmatriciel(const Matrice & matrice_);*/
+Matrice produitmatriciel(const Matrice & matrice_);
 };
