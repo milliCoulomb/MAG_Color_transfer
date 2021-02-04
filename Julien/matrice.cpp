@@ -45,6 +45,13 @@ Matrice::Matrice(const int NBligne_, const int NBcolonne_) :
   cout << this <<endl;
 }
 
+//Destructeur
+Matrice::~Matrice() {
+for (int i=0; i<get_NBligne(); i++) delete matrice[i];
+delete matrice;
+/*cout << "(La matrice a bien été détruite)"<<endl;*/
+}
+
 
 
 //Affichage
@@ -73,5 +80,20 @@ for (int i=0; i< matrice_.get_NBligne(); i++) {
 return *this;
 }
 
+
+//Produit matriciel
+Matrice Matrice::produitmatriciel(const Matrice & matrice_){
+Matrice M(get_NBligne(),matrice_.get_NBcolonne());
+
+for (int i=0; i< get_NBligne(); i++){
+   for (int j=0; j< matrice_.get_NBcolonne(); j++) {
+       for (int k=0; k< get_NBcolonne(); k++) {
+             M.matrice[i][j]= M.matrice[i][j] + matrice[i][k]*matrice_.matrice[k][j];
+       }
+   }
+}
+return M;
+
+}
 
 
