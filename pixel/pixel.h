@@ -16,6 +16,8 @@ class pixel : public matrix
  public :
   pixel();
   ~pixel();
+  int get_lines() const;
+  int get_rows() const;
   double get_red() const;
   double get_green() const;
   double get_blue() const;
@@ -24,5 +26,7 @@ class pixel : public matrix
   void set_blue(const double blue);
   pixel LMS() const;
   pixel LAB() const;
+  pixel back_to_LMS_from_LAB() const;
+  pixel back_to_RGB_from_LMS() const;
  };
 #endif //_PIXEL_H_
