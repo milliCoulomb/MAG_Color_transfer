@@ -1,5 +1,5 @@
 #include<iostream>
 using namespace std;
 int main() {
-  return(0);
+  cout << "Je me demande bien si ça marche.";
 }
