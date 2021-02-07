@@ -30,7 +30,7 @@ void pixel::set_blue(const double blue_) {
 }
 pixel::pixel():
 {
-	matrix(lines, rows);
+	matrix(get_lines(), get_rows());
 }
 pixel::~pixel():
 {
@@ -105,5 +105,6 @@ pixel::pixel back_to_RGB_from_LMS() const {
 	for (int i=0; i<pixel.get_lines(); i++) {
 		for (int j=0; j<pixel.get_rows(); j++){
 			pixel.tab[i][j]=exp(pixel.tab[i][j]);
+			//passage en exopnentiel des couleurs.
 	return lms_inv.prod(pixel);
 }
