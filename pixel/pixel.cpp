@@ -27,17 +27,20 @@ void pixel::set_green(const double green_) {
 void pixel::set_blue(const double blue_) {
 	p_blue=blue_;
 }
-pixel::pixel()
+
+pixel::pixel(const int lines_, const int rows_):
+	lines(lines_), rows(rows_),
 {
-	new (this) matrix();
-	// Gros problème ici dans la définition du constructeur.
+	new (this) matrix(lines, rows);
+	cout << this <<endl;
 }
+
 pixel::~pixel()
 {
-	~matrix();
-	// Pareil.
+	for (int i=0; i<get_lines(); i++) delete tab[i];
+	delete tab;
 }
-pixel::pixel LMS() const {
+pixel pixel::LMS() const {
 	matrix lms(3,3);
 	lms.tab[0][0]=0.3811;
 	lms.tab[0][1]=0.5783;
@@ -50,7 +53,7 @@ pixel::pixel LMS() const {
 	lms.tab[2][2]=0.8444;
 	return lms.prod(pixel);
 }
-pixel::pixel LAB() const {
+pixel pixel::LAB() const {
 	matrix lab1(3,3);
 	lab1.tab[0][0]=1/pow(3, 0.5);
 	lab1.tab[1][1]=1/pow(6, 0.5);
@@ -74,7 +77,7 @@ pixel::pixel LAB() const {
 	M2 = lab2.prod(pixel);
 	return lab1.prod(M2);
 }
-pixel::pixel back_to_LMS() const {
+pixel pixel::back_to_LMS() const {
 	matrix lab1_inv(3,3);
 	lab1_inv.tab[0][0]=1/pow(3, 0.5);
 	lab1_inv.tab[1][1]=1/pow(6, 0.5);
@@ -92,7 +95,7 @@ pixel::pixel back_to_LMS() const {
 	M3=lab1_inv.prod(pixel);
 	return lab2_inv.prod(M3);
 }
-pixel::pixel back_to_RGB_from_LMS() const {
+pixel pixel::back_to_RGB_from_LMS() const {
 	matrix lms_inv(3,3);
 	lms_inv.tab[0][0]=4.4679;
 	lms_inv.tab[0][1]=-3.5873;

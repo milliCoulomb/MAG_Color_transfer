@@ -14,7 +14,7 @@ class pixel : public matrix
   int lines=3;
   int rows=1;
  public :
-  pixel();
+  pixel(const int lines_, const int rows_);
   ~pixel();
   int get_lines() const;
   int get_rows() const;
