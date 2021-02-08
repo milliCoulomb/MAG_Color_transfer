@@ -30,10 +30,12 @@ void pixel::set_blue(const double blue_) {
 pixel::pixel()
 {
 	new (this) matrix();
+	// Gros problème ici dans la définition du constructeur.
 }
 pixel::~pixel()
 {
 	~matrix();
+	// Pareil.
 }
 pixel::pixel LMS() const {
 	matrix lms(3,3);
