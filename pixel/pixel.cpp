@@ -28,8 +28,8 @@ void pixel::set_blue(const double blue_) {
 	p_blue=blue_;
 }
 
-pixel::pixel(const int lines_, const int rows_):
-	lines(lines_), rows(rows_),
+pixel::pixel(const int lines_, const int rows_) :
+	lines(lines_), rows(rows_)
 {
 	new (this) matrix(lines, rows);
 	cout << this <<endl;
@@ -68,8 +68,8 @@ pixel pixel::LAB() const {
 	lab2.tab[2][0]=1.0;
 	lab2.tab[2][1]=-1.0;
 	lab2.tab[2][2]=0.0;
-	for (int i=0; i<pixel.get_lines(); i++) {
-		for (int j=0; j<pixel.get_rows(); j++){
+	for (int i=0; i<get_lines(); i++) {
+		for (int j=0; j<get_rows(); j++){
 			pixel.tab[i][j]=log(pixel.tab[i][j]);
 			// Passage en logarithme des couleurs.
 		}
@@ -77,7 +77,7 @@ pixel pixel::LAB() const {
 	M2 = lab2.prod(pixel);
 	return lab1.prod(M2);
 }
-pixel pixel::back_to_LMS() const {
+pixel pixel::back_to_LMS_from_LAB() const {
 	matrix lab1_inv(3,3);
 	lab1_inv.tab[0][0]=1/pow(3, 0.5);
 	lab1_inv.tab[1][1]=1/pow(6, 0.5);
@@ -106,9 +106,11 @@ pixel pixel::back_to_RGB_from_LMS() const {
 	lms_inv.tab[2][0]=0.0497;
 	lms_inv.tab[2][1]=-0.2439;
 	lms_inv.tab[2][2]=1.2045;
-	for (int i=0; i<pixel.get_lines(); i++) {
-		for (int j=0; j<pixel.get_rows(); j++){
+	for (int i=0; i<get_lines(); i++) {
+		for (int j=0; j<get_rows(); j++){
 			pixel.tab[i][j]=exp(pixel.tab[i][j]);
 			//passage en exopnentiel des couleurs, retour vers l'espace RGB.
+		}
+	}
 	return lms_inv.prod(pixel);
 }
