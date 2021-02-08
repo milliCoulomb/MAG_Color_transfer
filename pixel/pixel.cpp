@@ -1,5 +1,4 @@
 #include"pixel.h"
-#include"matrix.h"
 #include<iostream>
 #include<ostream>
 #include<cmath>
@@ -28,13 +27,15 @@ void pixel::set_green(const double green_) {
 void pixel::set_blue(const double blue_) {
 	p_blue=blue_;
 }
-pixel::pixel():
+pixel::pixel()
 {
-	matrix(get_lines(), get_rows());
+	new (this) matrix();
+	// Gros problème ici dans la définition du constructeur.
 }
-pixel::~pixel():
+pixel::~pixel()
 {
-	delete matrix;
+	~matrix();
+	// Pareil.
 }
 pixel::pixel LMS() const {
 	matrix lms(3,3);
