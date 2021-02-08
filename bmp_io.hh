@@ -15,7 +15,7 @@ public:
   explicit Bmp24(std::string const &file_name);
 
   /* Create a BMP image of specified width and height. Memory is allocated to
-     hold the image data, and can be accessed using pixel_data(). */
+     hold the image data, and can be accessed using pixel_data().  */
   Bmp24(size_t width, size_t height);
   ~Bmp24();
 
