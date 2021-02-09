@@ -27,12 +27,14 @@ namespace {
   streamsize const size_of_file_header = 14;
 
   // Substitute cstdint header declarations.
-  typedef short int16_t;
+	/*
+	typedef short int16_t;
   typedef int int32_t;
   typedef unsigned short uint_least16_t;
   typedef unsigned long uint_least32_t;
   typedef long int_least32_t;
-
+	*/
+	
 #if CHAR_BIT != 8
 #error This code assumes that chars are exactly 8 bit.
 #endif
