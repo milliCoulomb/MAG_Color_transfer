@@ -4,7 +4,6 @@
 #include<ostream>
 #include<cmath>
 #include"matrix.h"
-using namespace std;
 class pixel : public matrix
 {
  private :

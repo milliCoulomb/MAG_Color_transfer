@@ -29,15 +29,14 @@ void pixel::set_blue(const double blue_) {
 }
 
 pixel::pixel() :
-	matrix(lines, rows)
+	matrix(3, 1)
 {
-	new (this) matrix(lines, rows);
-	cout << this <<endl;
+	new (this) matrix(3, 1);
 }
 
 pixel::~pixel()
 {
-	for (int i=0; i<get_lines(); i++) delete tab[i];
+	//for (int i=0; i<get_lines(); i++) delete tab[i];
 	delete tab;
 }
 pixel pixel::LMS(const pixel & pixel_) {
