@@ -28,8 +28,8 @@ void pixel::set_blue(const double blue_) {
 	p_blue=blue_;
 }
 
-pixel::pixel(const int lines_, const int rows_) :
-	matrix(lines, rows), lines(lines_), rows(rows_)
+pixel::pixel() :
+	matrix(lines, rows)
 {
 	new (this) matrix(lines, rows);
 	cout << this <<endl;
