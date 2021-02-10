@@ -51,8 +51,12 @@ pixel pixel::LMS(const pixel & pixel_) {
 	lms.tab[2][0]=0.0241;
 	lms.tab[2][1]=0.1288;
 	lms.tab[2][2]=0.8444;
-    pixel Z = lms.prod(pixel_);
-	return Z;
+    matrix Z = lms.prod(pixel_);
+    pixel Y;
+    for (int i=0; i<get_lines(); i++) {
+		for (int j=0; j<get_rows(); j++){
+			Y.tab[i][j]=Z.tab[i][j];
+	return Y;
 }
 pixel pixel::LAB(const pixel & pixel_) {
 	matrix lab1(3,3);
