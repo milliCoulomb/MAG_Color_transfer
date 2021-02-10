@@ -26,7 +26,7 @@ class pixel : public matrix
   void set_blue(const double blue);
   pixel LMS(const pixel & pixel_);
   pixel LAB(const pixel & pixel_);
-  pixel back_to_LMS_from_LAB() const;
-  pixel back_to_RGB_from_LMS() const;
+  pixel back_to_LMS_from_LAB(const pixel & pixel_);
+  pixel back_to_RGB_from_LMS(const pixel & pixel_);
  };
 #endif //_PIXEL_H_
