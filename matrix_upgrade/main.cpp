@@ -72,6 +72,30 @@ for (int i=0; i<D.get_NBligne(); i++) {
        D.tab[i][j]= (rand() % 10) +1;
    }
 }
+
+matrix lms(3,3);
+lms.tab[0][0]=0.3811;
+lms.tab[0][1]=0.5783;
+lms.tab[0][2]=0.0402;
+lms.tab[1][0]=0.1967;
+lms.tab[1][1]=0.7244;
+lms.tab[1][2]=0.0782;
+lms.tab[2][0]=0.0241;
+lms.tab[2][1]=0.1288;
+lms.tab[2][2]=0.8444;
+lms.affiche();
+matrix pix(3,1);
+for (int i=0; i<pix.get_NBligne(); i++) {
+   for (int j=0; j<pix.get_NBcolonne(); j++){
+       pix.tab[i][j]= (rand() % 10) +1;
+   }
+}
+
+pix.affiche();
+matrix produ = lms.prod(pix);
+produ.affiche();
+
+
 cout <<endl;
 cout << "Je crée une matrix colonne 2x1 de nombres aléatoires";
 D.affiche();
