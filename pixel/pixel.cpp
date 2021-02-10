@@ -91,7 +91,7 @@ pixel pixel::LAB(const pixel & pixel_) {
 	}
 	return Y;
 }
-pixel pixel::back_to_LMS_from_LAB(const pixel & pixel_) const {
+pixel pixel::back_to_LMS_from_LAB(const pixel & pixel_) {
 	matrix lab1_inv(3,3);
 	lab1_inv.tab[0][0]=1/pow(3, 0.5);
 	lab1_inv.tab[1][1]=1/pow(6, 0.5);
@@ -116,7 +116,7 @@ pixel pixel::back_to_LMS_from_LAB(const pixel & pixel_) const {
 	}
 	return Y;
 }
-pixel pixel::back_to_RGB_from_LMS(const pixel & pixel_) const {
+pixel pixel::back_to_RGB_from_LMS(const pixel & pixel_) {
 	matrix lms_inv(3,3);
 	lms_inv.tab[0][0]=4.4679;
 	lms_inv.tab[0][1]=-3.5873;
