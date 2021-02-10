@@ -1,9 +1,10 @@
 #include<iostream>
 #include<ostream>
+#include<time.h>
+#include<stdlib.h>
 #include"matrix.h"
 
 using namespace std;
-
 double matrix::get_NBligne() const {
   return NBligne;
 }
@@ -27,7 +28,7 @@ matrix::matrix(const int NBligne_, const int NBcolonne_) :
     for (int j=0; j<NBcolonne_; j++) {
       tab[i][j] =0;}
 }
-  cout << this <<endl;
+  //cout << this <<endl;
 }
 
 matrix::~matrix() {
@@ -36,8 +37,6 @@ delete tab;
 }
 
 void matrix::affiche() const {
-cout <<endl;
-cout << "Représentation de la matrix :"<<endl;
 cout <<endl;
 for (int i=0; i< get_NBligne(); i++){
    for (int j=0; j< get_NBcolonne(); j++){
