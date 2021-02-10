@@ -106,7 +106,7 @@ pixel pixel::back_to_LMS_from_LAB(const pixel & pixel_) {
 	lab2_inv.tab[2][0]=1.0;
 	lab2_inv.tab[2][1]=-2.0;
 	lab2_inv.tab[2][2]=0.0;
-	M3=lab1_inv.prod(pixel_);
+	matrix M3=lab1_inv.prod(pixel_);
 	matrix M4 = lab2_inv.prod(M3);
 	pixel Y;
     for (int i=0; i<get_lines(); i++) {
@@ -133,7 +133,7 @@ pixel pixel::back_to_RGB_from_LMS(const pixel & pixel_) {
 			//passage en exopnentiel des couleurs, retour vers l'espace RGB.
 		}
 	}
-	matrix M=lms_inv.prod(pixel_)
+	matrix M=lms_inv.prod(pixel_);
 	pixel Y;
     for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
