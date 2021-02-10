@@ -5,7 +5,7 @@ Les commandes de base :
 
 -git checkout <nom de la branche> (pour choisir sa branche de travail)
   
--git branch <nom de la branche> (pour créer une branche)
+-git branch [nom de la branche] (pour créer une branche)
   
 -git status (affiche la branche sur laquelle vous vous trouvez et les fichiers modifiés)
 
@@ -13,4 +13,8 @@ Les commandes de base :
 
 -git push (permet de poster les modifications sur le repo)
 
--git merge <nom de la branche> (permet de faire une demande de fusion de votre travail dans la branche principale, on se placera dans la branche master pour effectuer cette commande).
+-git merge [nom de la branche] (permet de faire une demande de fusion de votre travail dans la branche principale, on se placera dans la branche master pour effectuer cette commande).
+
+Pour travailler plus efficacement, possibilitée de créer des clés SSH pour authentification automatique :
+
+https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
