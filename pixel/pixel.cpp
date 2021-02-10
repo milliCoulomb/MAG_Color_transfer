@@ -3,6 +3,7 @@
 #include<ostream>
 #include<cmath>
 using namespace std;
+
 int pixel::get_lines() const {
   	return lines;
 }
