@@ -29,7 +29,7 @@ void pixel::set_blue(const double blue_) {
 }
 
 pixel::pixel(const int lines_, const int rows_) :
-	lines(lines_), rows(rows_)
+	lines(lines_), rows(rows_), matrix(lines, rows)
 {
 	new (this) matrix(lines, rows);
 	cout << this <<endl;
