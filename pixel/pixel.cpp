@@ -40,7 +40,7 @@ pixel::~pixel()
 	for (int i=0; i<get_lines(); i++) delete tab[i];
 	delete tab;
 }
-pixel pixel::LMS() const {
+pixel pixel::LMS(const pixel & pixel_) {
 	matrix lms(3,3);
 	lms.tab[0][0]=0.3811;
 	lms.tab[0][1]=0.5783;
@@ -51,9 +51,10 @@ pixel pixel::LMS() const {
 	lms.tab[2][0]=0.0241;
 	lms.tab[2][1]=0.1288;
 	lms.tab[2][2]=0.8444;
-	return lms.prod(pixel);
+    pixel Z = lms.prod(pixel_);
+	return Z;
 }
-pixel pixel::LAB() const {
+pixel pixel::LAB(const pixel & pixel_) {
 	matrix lab1(3,3);
 	lab1.tab[0][0]=1/pow(3, 0.5);
 	lab1.tab[1][1]=1/pow(6, 0.5);
@@ -70,12 +71,13 @@ pixel pixel::LAB() const {
 	lab2.tab[2][2]=0.0;
 	for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
-			pixel.tab[i][j]=log(pixel.tab[i][j]);
+			pixel_.tab[i][j]=log(pixel_.tab[i][j]);
 			// Passage en logarithme des couleurs.
 		}
 	}
-	M2 = lab2.prod(pixel);
-	return lab1.prod(M2);
+	pixel M2 = lab2.prod(pixel_);
+    pixel M3=lab1.prod(M2);
+	return M3;
 }
 pixel pixel::back_to_LMS_from_LAB() const {
 	matrix lab1_inv(3,3);

@@ -24,8 +24,8 @@ class pixel : public matrix
   void set_red(const double red);
   void set_green(const double green);
   void set_blue(const double blue);
-  pixel LMS() const;
-  pixel LAB() const;
+  pixel LMS(const pixel & pixel_);
+  pixel LAB(const pixel & pixel_);
   pixel back_to_LMS_from_LAB() const;
   pixel back_to_RGB_from_LMS() const;
  };
