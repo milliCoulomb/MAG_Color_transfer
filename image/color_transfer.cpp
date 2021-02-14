@@ -26,6 +26,7 @@ int main(int arguments, char **arguments){
 		unsigned char blue=input_data[3*pixel_index];
     	unsigned char green=input_data[3*pixel_index+1];
     	unsigned char red=input_data[3*pixel_index+2];
+    	pixel inter();
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
 }
