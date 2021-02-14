@@ -49,13 +49,13 @@ void pixel::LMS() const {
 	}
 	matrix lms(3,3);
 	lms.tab[0][0]=0.3811;
-	lms.tab[1][0]=0.5783;
-	lms.tab[2][0]=0.0402;
-	lms.tab[0][1]=0.1967;
+	lms.tab[0][1]=0.5783;
+	lms.tab[0][2]=0.0402;
+	lms.tab[1][0]=0.1967;
 	lms.tab[1][1]=0.7244;
-	lms.tab[2][1]=0.0782;
-	lms.tab[0][2]=0.0241;
-	lms.tab[1][2]=0.1288;
+	lms.tab[1][2]=0.0782;
+	lms.tab[2][0]=0.0241;
+	lms.tab[2][1]=0.1288;
 	lms.tab[2][2]=0.8444;
 	lms.affiche();
     matrix Z = lms.prod(inter);
@@ -78,13 +78,13 @@ void pixel::LAB() const {
 	lab1.tab[2][2]=1/pow(2, 0.5);
 	matrix lab2(3,3);
 	lab2.tab[0][0]=1.0;
-	lab2.tab[1][0]=1.0;
-	lab2.tab[2][0]=1.0;
 	lab2.tab[0][1]=1.0;
-	lab2.tab[1][1]=1.0;
-	lab2.tab[2][1]=-2.0;
 	lab2.tab[0][2]=1.0;
-	lab2.tab[1][2]=-1.0;
+	lab2.tab[1][0]=1.0;
+	lab2.tab[1][1]=1.0;
+	lab2.tab[1][2]=-2.0;
+	lab2.tab[2][0]=1.0;
+	lab2.tab[2][1]=-1.0;
 	lab2.tab[2][2]=0.0;
 	lab2.affiche();
 	for (int i=0; i<get_lines(); i++) {
@@ -114,13 +114,13 @@ void pixel::back_to_LMS_from_LAB() const{
 	lab1_inv.tab[2][2]=1/pow(2, 0.5);
 	matrix lab2_inv(3,3);
 	lab2_inv.tab[0][0]=1.0;
-	lab2_inv.tab[1][0]=1.0;
-	lab2_inv.tab[2][0]=1.0;
 	lab2_inv.tab[0][1]=1.0;
-	lab2_inv.tab[1][1]=1.0;
-	lab2_inv.tab[2][1]=-1.0;
 	lab2_inv.tab[0][2]=1.0;
-	lab2_inv.tab[1][2]=-2.0;
+	lab2_inv.tab[1][0]=1.0;
+	lab2_inv.tab[1][1]=1.0;
+	lab2_inv.tab[1][2]=-1.0;
+	lab2_inv.tab[2][0]=1.0;
+	lab2_inv.tab[2][1]=-2.0;
 	lab2_inv.tab[2][2]=0.0;
 	lab2_inv.affiche();
 	matrix M3=lab1_inv.prod(inter);
@@ -140,13 +140,13 @@ void pixel::back_to_RGB_from_LMS() const{
 	}
 	matrix lms_inv(3,3);
 	lms_inv.tab[0][0]=4.4679;
-	lms_inv.tab[1][0]=-3.5873;
-	lms_inv.tab[2][0]=0.1193;
-	lms_inv.tab[0][1]=-1.2186;
+	lms_inv.tab[0][1]=-3.5873;
+	lms_inv.tab[0][2]=0.1193;
+	lms_inv.tab[1][0]=-1.2186;
 	lms_inv.tab[1][1]=2.3809;
-	lms_inv.tab[2][1]=-0.1624;
-	lms_inv.tab[0][2]=0.0497;
-	lms_inv.tab[1][2]=-0.2439;
+	lms_inv.tab[1][2]=-0.1624;
+	lms_inv.tab[2][0]=0.0497;
+	lms_inv.tab[2][1]=-0.2439;
 	lms_inv.tab[2][2]=1.2045;
 	lms_inv.affiche();
 	for (int i=0; i<get_lines(); i++) {
