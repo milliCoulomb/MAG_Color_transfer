@@ -2,7 +2,6 @@
 
 #include <cstdlib>
 #include <iostream>
-
 #include "bmp_io.hh"
 
 using namespace std;
