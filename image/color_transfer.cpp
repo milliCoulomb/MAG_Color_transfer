@@ -20,6 +20,7 @@ int main(int arguments, char **arguments){
 	double mean_ex_b=0;
 	double std_b=0;
 	double mean_b=0;
+	// Peut être mettre tout ça dans une liste ?
 	// Trois arguments, l'image d'entrée, l'image source et la sortie.
 	Bmp24 source(arguments[1]);
 	size_t width_source=source.width();
