@@ -23,10 +23,12 @@ int main(int arguments, char **arguments){
 	unsigned char const * const output_data=output.pixel_data();
 	// On crée une troisième image de la taille de l'image d'entrée qui sera l'image de sortie.
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
-		unsigned char blue=input_data[3*pixel_index];
-    	unsigned char green=input_data[3*pixel_index+1];
-    	unsigned char red=input_data[3*pixel_index+2];
-    	pixel inter();
+		pixel inter();
+		unsigned char inter.tab[2][0]=input_data[3*pixel_index];
+    	unsigned char inter.tab[1][0]=input_data[3*pixel_index+1];
+    	unsigned char inter.tab[0][0]=input_data[3*pixel_index+2];
+    	inter.LMS();
+    	inter.LAB();
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
 }
