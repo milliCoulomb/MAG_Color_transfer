@@ -8,6 +8,18 @@ int main(int arguments, char **arguments){
 		clog << "Tu pensais vraiment que ça allait marcher ?"<< endl;
 		return EXIT_FAILURE;
 	}
+	double std_ex_l=0;
+	double mean_ex_l=0;
+	double std_l=0;
+	double mean_l=0;
+	double std_ex_a=0;
+	double mean_ex_a=0;
+	double std_a=0;
+	double mean_a=0;
+	double std_ex_b=0;
+	double mean_ex_b=0;
+	double std_b=0;
+	double mean_b=0;
 	// Trois arguments, l'image d'entrée, l'image source et la sortie.
 	Bmp24 source(arguments[1]);
 	size_t width_source=source.width();
@@ -29,6 +41,8 @@ int main(int arguments, char **arguments){
     	unsigned char inter.tab[0][0]=input_data[3*pixel_index+2];
     	inter.LMS();
     	inter.LAB();
+    	std_ex_l = std_ex_l + inter.tab[0][0];
+
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
 }
