@@ -47,16 +47,19 @@ int main(int argc, char **argv){
 	Bmp24 target(argv[2]);
 	size_t width_target=target.width();
   	size_t height_target=target.height();
-  	unsigned char const * const cible_target=target.pixel_data();
+  	unsigned char const * const target_data=target.pixel_data();
   	// On récupère les propriétées de l'image cible en couleur.
 	Bmp24 output(width_source, height_source);
-	unsigned char const * const output_data=output.pixel_data();
+	unsigned char * const output_data=output.pixel_data();
 	// On crée une troisième image de la taille de l'image d'entrée qui sera l'image de sortie.
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
 		pixel inter;
-		unsigned char inter.tab[2][0]=source_data[3*pixel_index];
-    	unsigned char inter.tab[1][0]=source_data[3*pixel_index+1];
-    	unsigned char inter.tab[0][0]=source_data[3*pixel_index+2];
+		unsigned char blue=source_data[3*pixel_index];
+    	unsigned char green=source_data[3*pixel_index+1];
+    	unsigned char red=source_data[3*pixel_index+2];
+    	inter.tab[2][0]=blue;
+    	inter.tab[1][0]=green;
+    	inter.tab[0][0]=red;
     	inter.LMS();
     	inter.LAB();
     	mean_ex_l=mean_ex_l+inter.tab[0][0];
@@ -99,24 +102,27 @@ int main(int argc, char **argv){
 
 	for(size_t pixel_index=0 ; pixel_index<width_target*height_target;++pixel_index){
 		pixel inter2;
-		unsigned char inter2.tab[2][0]=target_data[3*pixel_index];
-    	unsigned char inter2.tab[1][0]=target_data[3*pixel_index+1];
-    	unsigned char inter2.tab[0][0]=target_data[3*pixel_index+2];
+		unsigned char blue=target_data[3*pixel_index];
+    	unsigned char green=target_data[3*pixel_index+1];
+    	unsigned char red=target_data[3*pixel_index+2];
+    	inter2.tab[2][0]=blue;
+    	inter2.tab[1][0]=green;
+    	inter2.tab[0][0]=red;
     	inter2.LMS();
     	inter2.LAB();
-    	mean_ex_l=mean_ex_l+inter.tab[0][0];
-    	mean_ex_a=mean_ex_a+inter.tab[1][0];
-    	mean_ex_b=mean_ex_b+inter.tab[2][0];
+    	mean_ex_l=mean_ex_l+inter2.tab[0][0];
+    	mean_ex_a=mean_ex_a+inter2.tab[1][0];
+    	mean_ex_b=mean_ex_b+inter2.tab[2][0];
     	//on calcule la variance à l'aide de l'algorithme de Welrod
     	double old_M_l = M_l;
-    	M_l = M_l + (inter.tab[0][0]-M_l)/(pixel_index+1);
-    	std_ex_l=std_ex_l + (inter.tab[0][0]-M_l)*(inter.tab[0][0]-old_M_l);
+    	M_l = M_l + (inter2.tab[0][0]-M_l)/(pixel_index+1);
+    	std_ex_l=std_ex_l + (inter2.tab[0][0]-M_l)*(inter2.tab[0][0]-old_M_l);
     	double old_M_a = M_a;
-    	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
-    	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
+    	M_a = M_a + (inter2.tab[1][0]-M_a)/(pixel_index+1);
+    	std_ex_a=std_ex_a + (inter2.tab[1][0]-M_a)*(inter2.tab[1][0]-old_M_a);
     	double old_M_b = M_a;
-    	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
-    	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
+    	M_a = M_a + (inter2.tab[1][0]-M_a)/(pixel_index+1);
+    	std_ex_a=std_ex_a + (inter2.tab[1][0]-M_a)*(inter2.tab[1][0]-old_M_a);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
 	mean_l_2=mean_ex_l/(width_source*height_source);
@@ -128,20 +134,26 @@ int main(int argc, char **argv){
 
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
 		pixel inter3;
-		unsigned char inter3.tab[2][0]=source_data[3*pixel_index];
-    	unsigned char inter3.tab[1][0]=source_data[3*pixel_index+1];
-    	unsigned char inter3.tab[0][0]=source_data[3*pixel_index+2];
+		unsigned char blue=source_data[3*pixel_index];
+    	unsigned char green=source_data[3*pixel_index+1];
+    	unsigned char red=source_data[3*pixel_index+2];
+    	inter3.tab[2][0]=blue;
+    	inter3.tab[1][0]=green;
+    	inter3.tab[0][0]=red;
     	inter3.LMS();
     	inter3.LAB();
-    	pixel inter4();
+    	pixel inter4;
     	inter4.tab[0][0]=(std_l_2/std_l)*(inter3.tab[0][0] - mean_l) + mean_l_2;
     	inter4.tab[1][0]=(std_a_2/std_a)*(inter3.tab[1][0] - mean_a) + mean_a_2;
     	inter4.tab[2][0]=(std_b_2/std_b)*(inter3.tab[2][0] - mean_b) + mean_b_2;
     	inter4.back_to_LMS_from_LAB();
     	inter4.back_to_RGB_from_LMS();
-    	output_data[3*pixel_index+2]=floor2(inter4.tab[0][0]);
-    	output_data[3*pixel_index+1]=floor2(inter4.tab[1][0]);
-    	output_data[3*pixel_index]=floor2(inter4.tab[2][0]);
+    	unsigned char r =floor2(inter4.tab[0][0]);
+    	unsigned char b = floor2(inter4.tab[2][0]);
+    	unsigned char g = floor2(inter4.tab[1][0]);
+    	output_data[3*pixel_index+2]=r;
+    	output_data[3*pixel_index+1]=g;
+    	output_data[3*pixel_index]=b;
 	}
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
