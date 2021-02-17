@@ -52,8 +52,8 @@ int main(int argc, char **argv){
 	Bmp24 output(width_source, height_source);
 	unsigned char * const output_data=output.pixel_data();
 	// On crée une troisième image de la taille de l'image d'entrée qui sera l'image de sortie.
+	pixel inter;
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
-		pixel inter;
 		unsigned char blue=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
     	unsigned char red=source_data[3*pixel_index+2];
@@ -72,11 +72,12 @@ int main(int argc, char **argv){
     	double old_M_a = M_a;
     	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
     	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
-    	double old_M_b = M_a;
-    	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
-    	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
+    	double old_M_b = M_b;
+    	M_b = M_b + (inter.tab[2][0]-M_b)/(pixel_index+1);
+    	std_ex_b=std_ex_b + (inter.tab[2][0]-M_b)*(inter.tab[2][0]-old_M_b);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
+	inter.affiche();
 	mean_l=mean_ex_l/(width_source*height_source);
 	mean_a=mean_ex_a/(width_source*height_source);
 	mean_b=mean_ex_b/(width_source*height_source);
@@ -99,9 +100,8 @@ int main(int argc, char **argv){
 	double std_l_2=0;
 	double std_a_2=0;
 	double std_b_2=0;
-
+	pixel inter2;
 	for(size_t pixel_index=0 ; pixel_index<width_target*height_target;++pixel_index){
-		pixel inter2;
 		unsigned char blue=target_data[3*pixel_index];
     	unsigned char green=target_data[3*pixel_index+1];
     	unsigned char red=target_data[3*pixel_index+2];
@@ -120,20 +120,21 @@ int main(int argc, char **argv){
     	double old_M_a = M_a;
     	M_a = M_a + (inter2.tab[1][0]-M_a)/(pixel_index+1);
     	std_ex_a=std_ex_a + (inter2.tab[1][0]-M_a)*(inter2.tab[1][0]-old_M_a);
-    	double old_M_b = M_a;
-    	M_a = M_a + (inter2.tab[1][0]-M_a)/(pixel_index+1);
-    	std_ex_a=std_ex_a + (inter2.tab[1][0]-M_a)*(inter2.tab[1][0]-old_M_a);
+    	double old_M_b = M_b;
+    	M_b = M_b + (inter2.tab[2][0]-M_b)/(pixel_index+1);
+    	std_ex_b=std_ex_b + (inter2.tab[2][0]-M_b)*(inter2.tab[2][0]-old_M_b);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
+	inter2.affiche();
 	mean_l_2=mean_ex_l/(width_source*height_source);
 	mean_a_2=mean_ex_a/(width_source*height_source);
 	mean_b_2=mean_ex_b/(width_source*height_source);
 	std_l_2=std_ex_l/(width_source*height_source);
 	std_a_2=std_ex_a/(width_source*height_source);
 	std_b_2=std_ex_b/(width_source*height_source);
-
+	pixel inter3;
+	pixel inter4;
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
-		pixel inter3;
 		unsigned char blue=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
     	unsigned char red=source_data[3*pixel_index+2];
@@ -142,7 +143,6 @@ int main(int argc, char **argv){
     	inter3.tab[0][0]=red;
     	inter3.LMS();
     	inter3.LAB();
-    	pixel inter4;
     	inter4.tab[0][0]=(std_l_2/std_l)*(inter3.tab[0][0] - mean_l) + mean_l_2;
     	inter4.tab[1][0]=(std_a_2/std_a)*(inter3.tab[1][0] - mean_a) + mean_a_2;
     	inter4.tab[2][0]=(std_b_2/std_b)*(inter3.tab[2][0] - mean_b) + mean_b_2;
@@ -155,6 +155,12 @@ int main(int argc, char **argv){
     	output_data[3*pixel_index+1]=g;
     	output_data[3*pixel_index]=b;
 	}
+	inter3.affiche();
+	inter4.affiche();
+	cout << std_l << ' ' << std_a << ' ' << std_b <<endl;
+	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
+	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
+	cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
