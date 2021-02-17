@@ -140,6 +140,6 @@ int main(int arguments, char **arguments){
     	output_data[3*pixel_index+1]=floor(inter4.tab[1][0]);
     	output_data[3*pixel_index]=floor(inter4.tab[2][0]);
 	}
-	bool ok = output_bmp.write_file(argv[3]);
+	bool ok = output.write_file(arguments[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
