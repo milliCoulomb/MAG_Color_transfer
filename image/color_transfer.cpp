@@ -3,8 +3,19 @@
 #include "bmp_io.hh"
 #include "pixel.h"
 using namespace std;
+int floor(double x) {
+	int y = (int) x;
+	double z=y-x;
+	if (abs(z) >= 0.5) {
+  		return (y+1);
+  	}
+	if (abs(z) < 0.5) {
+   		return y;
+   	}
+	return 0;
+} 
 int main(int arguments, char **arguments){
-	if (arguments <3) {
+	if (arguments <4) {
 		clog << "Tu pensais vraiment que ça allait marcher ?"<< endl;
 		return EXIT_FAILURE;
 	}
@@ -12,14 +23,17 @@ int main(int arguments, char **arguments){
 	double mean_ex_l=0;
 	double std_l=0;
 	double mean_l=0;
+	double M_l=0;
 	double std_ex_a=0;
 	double mean_ex_a=0;
 	double std_a=0;
 	double mean_a=0;
+	double M_a=0;
 	double std_ex_b=0;
 	double mean_ex_b=0;
 	double std_b=0;
 	double mean_b=0;
+	double M_b=0;
 	// Peut être mettre tout ça dans une liste ?
 	// Trois arguments, l'image d'entrée, l'image source et la sortie.
 	Bmp24 source(arguments[1]);
@@ -37,13 +51,68 @@ int main(int arguments, char **arguments){
 	// On crée une troisième image de la taille de l'image d'entrée qui sera l'image de sortie.
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
 		pixel inter();
-		unsigned char inter.tab[2][0]=input_data[3*pixel_index];
-    	unsigned char inter.tab[1][0]=input_data[3*pixel_index+1];
-    	unsigned char inter.tab[0][0]=input_data[3*pixel_index+2];
+		unsigned char inter.tab[2][0]=source_data[3*pixel_index];
+    	unsigned char inter.tab[1][0]=source_data[3*pixel_index+1];
+    	unsigned char inter.tab[0][0]=source_data[3*pixel_index+2];
     	inter.LMS();
     	inter.LAB();
-    	std_ex_l = std_ex_l + inter.tab[0][0];
-
+    	mean_ex_l=mean_ex_l+inter.tab[0][0];
+    	mean_ex_a=mean_ex_a+inter.tab[1][0];
+    	mean_ex_b=mean_ex_b+inter.tab[2][0];
+    	//on calcule la variance à l'aide de l'algorithme de Welrod
+    	double old_M_l = M_l;
+    	M_l = M_l + (inter.tab[0][0]-M_l)/(pixel_index+1);
+    	std_ex_l=std_ex_l + (inter.tab[0][0]-M_l)*(inter.tab[0][0]-old_M_l);
+    	double old_M_a = M_a;
+    	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
+    	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
+    	double old_M_b = M_a;
+    	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
+    	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
+	mean_l=mean_ex_l/(width_source*height_source);
+	mean_a=mean_ex_a/(width_source*height_source);
+	mean_b=mean_ex_b/(width_source*height_source);
+	std_l=std_ex_l/(width_source*height_source);
+	std_a=std_ex_a/(width_source*height_source);
+	std_b=std_ex_b/(width_source*height_source);
+
+	mean_ex_l=0;
+	mean_ex_a=0;
+	mean_ex_b=0;
+	std_ex_l=0;
+	std_ex_a=0;
+	std_ex_b=0;
+	M_l=0;
+	M_a=0;
+	M_b=0;
+	for(size_t pixel_index=0 ; pixel_index<width_target*height_target;++pixel_index){
+		pixel inter2();
+		unsigned char inter2.tab[2][0]=target_data[3*pixel_index];
+    	unsigned char inter2.tab[1][0]=target_data[3*pixel_index+1];
+    	unsigned char inter2.tab[0][0]=target_data[3*pixel_index+2];
+    	inter2.LMS();
+    	inter2.LAB();
+    	mean_ex_l=mean_ex_l+inter.tab[0][0];
+    	mean_ex_a=mean_ex_a+inter.tab[1][0];
+    	mean_ex_b=mean_ex_b+inter.tab[2][0];
+    	//on calcule la variance à l'aide de l'algorithme de Welrod
+    	double old_M_l = M_l;
+    	M_l = M_l + (inter.tab[0][0]-M_l)/(pixel_index+1);
+    	std_ex_l=std_ex_l + (inter.tab[0][0]-M_l)*(inter.tab[0][0]-old_M_l);
+    	double old_M_a = M_a;
+    	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
+    	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
+    	double old_M_b = M_a;
+    	M_a = M_a + (inter.tab[1][0]-M_a)/(pixel_index+1);
+    	std_ex_a=std_ex_a + (inter.tab[1][0]-M_a)*(inter.tab[1][0]-old_M_a);
+    	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
+	}
+	mean_l=mean_ex_l/(width_source*height_source);
+	mean_a=mean_ex_a/(width_source*height_source);
+	mean_b=mean_ex_b/(width_source*height_source);
+	std_l=std_ex_l/(width_source*height_source);
+	std_a=std_ex_a/(width_source*height_source);
+	std_b=std_ex_b/(width_source*height_source);
 }
