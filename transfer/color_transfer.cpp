@@ -134,6 +134,9 @@ int main(int argc, char **argv){
 	std_b_2=std_ex_b/(width_source*height_source);
 	pixel inter3;
 	pixel inter4;
+	unsigned char r;
+    unsigned char b;
+    unsigned char g;
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
 		unsigned char blue=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
@@ -148,9 +151,9 @@ int main(int argc, char **argv){
     	inter4.tab[2][0]=(std_b_2/std_b)*(inter3.tab[2][0] - mean_b) + mean_b_2;
     	inter4.back_to_LMS_from_LAB();
     	inter4.back_to_RGB_from_LMS();
-    	unsigned char r =floor2(inter4.tab[0][0]);
-    	unsigned char b = floor2(inter4.tab[2][0]);
-    	unsigned char g = floor2(inter4.tab[1][0]);
+    	r =floor2(inter4.tab[0][0]);
+    	b = floor2(inter4.tab[2][0]);
+    	g = floor2(inter4.tab[1][0]);
     	output_data[3*pixel_index+2]=r;
     	output_data[3*pixel_index+1]=g;
     	output_data[3*pixel_index]=b;
@@ -161,6 +164,7 @@ int main(int argc, char **argv){
 	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
 	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
 	cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
+	cout << r << ' ' << g << ' ' << b<<endl;
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

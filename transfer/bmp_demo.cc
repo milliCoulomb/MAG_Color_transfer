@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     output_data[3 * pixel_index + 1] = 255 - green;
     output_data[3 * pixel_index + 2] = 255 - red;
   }
-
+  
   bool ok = output_bmp.write_file(argv[2]);
 
   return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
