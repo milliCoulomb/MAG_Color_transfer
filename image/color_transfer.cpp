@@ -130,7 +130,16 @@ int main(int arguments, char **arguments){
     	unsigned char inter3.tab[0][0]=source_data[3*pixel_index+2];
     	inter3.LMS();
     	inter3.LAB();
-    	output_data[3*pixel_index+2]=floor((std_l_2/std_l)*(inter3.tab[0][0] - mean_l) + mean_l_2);
-    	output_data[3*pixel_index+1]=floor((std_a_2/std_a)*(inter3.tab[1][0] - mean_a) + mean_a_2);
+    	pixel inter4();
+    	inter4.tab[0][0]=(std_l_2/std_l)*(inter3.tab[0][0] - mean_l) + mean_l_2;
+    	inter4.tab[1][0]=(std_a_2/std_a)*(inter3.tab[1][0] - mean_a) + mean_a_2;
+    	inter4.tab[2][0]=(std_b_2/std_b)*(inter3.tab[2][0] - mean_b) + mean_b_2;
+    	inter4.back_to_LMS_from_LAB();
+    	inter4.back_to_RGB_from_LMS();
+    	output_data[3*pixel_index+2]=floor(inter4.tab[0][0]);
+    	output_data[3*pixel_index+1]=floor(inter4.tab[1][0]);
+    	output_data[3*pixel_index]=floor(inter4.tab[2][0]);
 	}
+	bool ok = output_bmp.write_file(argv[3]);
+	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
