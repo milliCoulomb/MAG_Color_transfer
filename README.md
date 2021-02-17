@@ -1,5 +1,12 @@
-# Projet de C++, magistère de Physique d'Orsay.
-C'est ici que l'on travaille. Clonez le repo dans votre Linux, puis créer une nouvelle branche quand vous éditez de nouvelles fonctionnalités. Faites un pull request quand votre travail est fini.
+# C++ project, color transfer, magistère de Physique d'Orsay.
+C++ program to transfer color from an image to another using a target image (only works for BMP 24 images). The method is depicted in [Color Transfer between Images](https://www.cs.tau.ac.il/~turkel/imagepapers/ColorTransfer.pdf). We included two programs. The first one can be found in the transfer folder, under the name of transfer.cpp. To successfully use the files, compile transfer.cpp with matrix.cpp, pixel.cpp and bmp_io.cc. Then, execute the executable with three arguments, the first one is **the source file**, the image that will be transfered. The second argument is the colorimetric **target** image. The third one is the name of the **output** file.
+
+Features provided in the repositery:
+
+* A matrix class, with a product method and a transpose method, as well as a display method.
+* A pixel class, which inherits from the matrix class (each pixel is a 3x1 matrix). This class comes with for methods, **LMS**, **LAB**, **back_to_LMS_from_LAB** and **back_to_RGB_from_LMS**.
+* A bmp_io class, with some various methods to manipulate Bitmap images, such as write methods, pixel_data to recover the data of the image, etc.
+
 # On ne mergera les branches vers la branche master que quand le code est fonctionnel.
 Les commandes de base :
 
