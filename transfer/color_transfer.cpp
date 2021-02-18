@@ -81,9 +81,9 @@ int main(int argc, char **argv){
 	mean_l=mean_ex_l/(width_source*height_source);
 	mean_a=mean_ex_a/(width_source*height_source);
 	mean_b=mean_ex_b/(width_source*height_source);
-	std_l=std_ex_l/(width_source*height_source);
-	std_a=std_ex_a/(width_source*height_source);
-	std_b=std_ex_b/(width_source*height_source);
+	std_l=pow(std_ex_l/(width_source*height_source), 0.5);
+	std_a=pow(std_ex_a/(width_source*height_source), 0.5);
+	std_b=pow(std_ex_b/(width_source*height_source), 0.5);
 
 	mean_ex_l=0;
 	mean_ex_a=0;
@@ -129,9 +129,9 @@ int main(int argc, char **argv){
 	mean_l_2=mean_ex_l/(width_source*height_source);
 	mean_a_2=mean_ex_a/(width_source*height_source);
 	mean_b_2=mean_ex_b/(width_source*height_source);
-	std_l_2=std_ex_l/(width_source*height_source);
-	std_a_2=std_ex_a/(width_source*height_source);
-	std_b_2=std_ex_b/(width_source*height_source);
+	std_l_2=pow(std_ex_l/(width_source*height_source), 0.5);
+	std_a_2=pow(std_ex_a/(width_source*height_source), 0.5);
+	std_b_2=pow(std_ex_b/(width_source*height_source), 0.5);
 	pixel inter3;
 	pixel inter4;
 	unsigned char r;
@@ -151,9 +151,9 @@ int main(int argc, char **argv){
     	inter4.tab[2][0]=(std_b_2/std_b)*(inter3.tab[2][0] - mean_b) + mean_b_2;
     	inter4.back_to_LMS_from_LAB();
     	inter4.back_to_RGB_from_LMS();
-    	r =floor2(inter4.tab[0][0]);
-    	b = floor2(inter4.tab[2][0]);
-    	g = floor2(inter4.tab[1][0]);
+    	r=floor2(inter4.tab[0][0]);
+    	b=floor2(inter4.tab[2][0]);
+    	g=floor2(inter4.tab[1][0]);
     	output_data[3*pixel_index+2]=r;
     	output_data[3*pixel_index+1]=g;
     	output_data[3*pixel_index]=b;
