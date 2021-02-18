@@ -77,6 +77,17 @@ int main(int argc, char **argv){
     	std_ex_b=std_ex_b + (inter.tab[2][0]-M_b)*(inter.tab[2][0]-old_M_b);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
+	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
+		unsigned char blue=source_data[3*pixel_index];
+    	unsigned char green=source_data[3*pixel_index+1];
+    	unsigned char red=source_data[3*pixel_index+2];
+    	inter.tab[2][0]=blue;
+    	inter.tab[1][0]=green;
+    	inter.tab[0][0]=red;
+    	inter.LMS();
+    	inter.LAB();
+    	
+	}
 	//inter.affiche();
 	mean_l=mean_ex_l/(width_source*height_source);
 	mean_a=mean_ex_a/(width_source*height_source);
