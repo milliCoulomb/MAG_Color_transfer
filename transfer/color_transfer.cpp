@@ -3,7 +3,7 @@
 #include<ostream>
 #include<cmath>
 #include"bmp_io.hh"
-#include"pixel.hh"
+#include"pixel.h"
 using namespace std;
 int floor2(double x) {
 	int y = (int) x;

@@ -1,4 +1,4 @@
-#include"pixel.hh"
+#include"pixel.h"
 #include<iostream>
 #include<ostream>
 #include<cmath>
@@ -31,15 +31,14 @@ void pixel::set_blue(const double blue_) {
 pixel::pixel() :
 	matrix(3, 1)
 {
-
 	new (this) matrix(3, 1);
 }
 
-/*pixel::~pixel()
+pixel::~pixel()
 {
-	for (int i=0; i<get_lines(); i++) delete tab[i];
-	delete tab;
-}*/
+	for (int i=0; i<3; i++) delete tab[i];
+	//delete tab;
+}
 void pixel::LMS() const {
 	matrix inter(get_lines(), get_rows());
 	for (int i=0; i<get_lines(); i++) {
