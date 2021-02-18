@@ -9,8 +9,8 @@ M4 = M3.T
 M5 = M2
 M6 = np.array([[4.4679, -3.5873, 0.1193], [-1.2186, 2.3809, -0.1624], [0.0497, -0.2439, 1.2045]])
 
-img_cible = Image.open("source.bmp")
-img_source = Image.open("cible.bmp")
+img_cible = Image.open("cible_2.bmp")
+img_source = Image.open("source_2.bmp")
 image_array=np.array(img_source)
 img_source_LMS = np.dot(img_source, M1)
 img_cible_LMS = np.dot(img_cible, M1)
