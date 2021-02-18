@@ -77,7 +77,7 @@ int main(int argc, char **argv){
     	std_ex_b=std_ex_b + (inter.tab[2][0]-M_b)*(inter.tab[2][0]-old_M_b);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
-	inter.affiche();
+	//inter.affiche();
 	mean_l=mean_ex_l/(width_source*height_source);
 	mean_a=mean_ex_a/(width_source*height_source);
 	mean_b=mean_ex_b/(width_source*height_source);
@@ -125,7 +125,7 @@ int main(int argc, char **argv){
     	std_ex_b=std_ex_b + (inter2.tab[2][0]-M_b)*(inter2.tab[2][0]-old_M_b);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
-	inter2.affiche();
+	//inter2.affiche();
 	mean_l_2=mean_ex_l/(width_source*height_source);
 	mean_a_2=mean_ex_a/(width_source*height_source);
 	mean_b_2=mean_ex_b/(width_source*height_source);
@@ -158,8 +158,8 @@ int main(int argc, char **argv){
     	output_data[3*pixel_index+1]=g;
     	output_data[3*pixel_index]=b;
 	}
-	inter3.affiche();
-	inter4.affiche();
+	//inter3.affiche();
+	//inter4.affiche();
 	cout << std_l << ' ' << std_a << ' ' << std_b <<endl;
 	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
 	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
