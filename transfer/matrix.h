@@ -12,7 +12,7 @@ int NBcolonne;
 
 public :
 
-double **tab;
+long double **tab;
 matrix(const int NBligne_, const int NBcolonne_);
 ~matrix();
 double get_NBligne() const;

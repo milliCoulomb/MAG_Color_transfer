@@ -57,15 +57,24 @@ int main(int argc, char **argv){
 		unsigned char blue=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
     	unsigned char red=source_data[3*pixel_index+2];
-    	inter.tab[2][0]=blue;
-    	inter.tab[1][0]=green;
-    	inter.tab[0][0]=red;
+    	inter.tab[2][0]=double(blue);
+    	inter.tab[1][0]=double(green);
+    	inter.tab[0][0]=double(red);
+    	if (pixel_index==0) {
+    		inter.affiche();
+    	}
     	inter.LMS();
+    	if (pixel_index==0) {
+    		inter.affiche();
+    	}
     	inter.LAB();
+    	if (pixel_index==0) {
+    		inter.affiche();
+    	}
     	mean_ex_l=mean_ex_l+inter.tab[0][0];
     	mean_ex_a=mean_ex_a+inter.tab[1][0];
     	mean_ex_b=mean_ex_b+inter.tab[2][0];
-    	//on calcule la variance à l'aide de l'algorithme de Welrod
+    	//on calcule la variance à l'aide de l'algorithme de Welfrod
     	double old_M_l = M_l;
     	M_l = M_l + (inter.tab[0][0]-M_l)/(pixel_index+1);
     	std_ex_l=std_ex_l + (inter.tab[0][0]-M_l)*(inter.tab[0][0]-old_M_l);
@@ -77,6 +86,10 @@ int main(int argc, char **argv){
     	std_ex_b=std_ex_b + (inter.tab[2][0]-M_b)*(inter.tab[2][0]-old_M_b);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
+	/*
+	double std_l_corr=0;
+	double std_a_corr=0;
+	double std_b_corr=0;
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
 		unsigned char blue=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
@@ -86,8 +99,10 @@ int main(int argc, char **argv){
     	inter.tab[0][0]=red;
     	inter.LMS();
     	inter.LAB();
+
     	
 	}
+	*/
 	//inter.affiche();
 	mean_l=mean_ex_l/(width_source*height_source);
 	mean_a=mean_ex_a/(width_source*height_source);
@@ -175,7 +190,7 @@ int main(int argc, char **argv){
 	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
 	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
 	cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
-	cout << r << ' ' << g << ' ' << b<<endl;
+	//cout << r << ' ' << g << ' ' << b<<endl;
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }

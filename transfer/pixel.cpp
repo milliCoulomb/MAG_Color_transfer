@@ -75,6 +75,7 @@ void pixel::LAB() const {
 	lab1.tab[0][0]=1/pow(3, 0.5);
 	lab1.tab[1][1]=1/pow(6, 0.5);
 	lab1.tab[2][2]=1/pow(2, 0.5);
+	//lab1.affiche();
 	matrix lab2(3,3);
 	lab2.tab[0][0]=1.0;
 	lab2.tab[0][1]=1.0;
@@ -88,7 +89,8 @@ void pixel::LAB() const {
 	//lab2.affiche();
 	for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
-			inter.tab[i][j]=log(inter.tab[i][j]);
+			double a = log(inter.tab[i][j]);
+			inter.tab[i][j]=a;
 			// Passage en logarithme des couleurs.
 		}
 	}
@@ -111,6 +113,7 @@ void pixel::back_to_LMS_from_LAB() const{
 	lab1_inv.tab[0][0]=1/pow(3, 0.5);
 	lab1_inv.tab[1][1]=1/pow(6, 0.5);
 	lab1_inv.tab[2][2]=1/pow(2, 0.5);
+	//lab1_inv.affiche();
 	matrix lab2_inv(3,3);
 	lab2_inv.tab[0][0]=1.0;
 	lab2_inv.tab[0][1]=1.0;
@@ -150,7 +153,8 @@ void pixel::back_to_RGB_from_LMS() const{
 	//lms_inv.affiche();
 	for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
-			inter.tab[i][j]=exp(inter.tab[i][j]);
+			double b=exp(inter.tab[i][j]);
+			inter.tab[i][j]=b;
 			//passage en exopnentiel des couleurs, retour vers l'espace RGB.
 		}
 	}
