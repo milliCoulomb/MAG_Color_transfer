@@ -4,8 +4,9 @@ C++ program to transfer color from an image to another using a target image (onl
 Features provided in the repositery:
 
 * A matrix class, with a product method and a transpose method, as well as a display method.
-* A pixel class, which inherits from the matrix class (each pixel is a 3x1 matrix). This class comes with for methods, **LMS**, **LAB**, **back_to_LMS_from_LAB** and **back_to_RGB_from_LMS**.
+* A pixel class, which inherits from the matrix class (each pixel is a 3x1 matrix). This class comes with four methods, **LMS**, **LAB**, **back_to_LMS_from_LAB** and **back_to_RGB_from_LMS** which allow to do transformations of the colorimetric space.
 * A bmp_io class, with some various methods to manipulate Bitmap images, such as write methods, pixel_data to recover the data of the image, etc.
+* A Python file, which realises the same task as the C++ file. It allowed us to compare the two outpouts. To use it, just put the **source.bmp** and **cible.bmp** in the Python folder and use the command line : `` $ python3 color_transfer.py ``. It will generate a **out.bmp** file.
 
 # On ne mergera les branches vers la branche master que quand le code est fonctionnel.
 Les commandes de base :
