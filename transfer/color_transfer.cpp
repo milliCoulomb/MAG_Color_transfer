@@ -53,7 +53,8 @@ int main(int argc, char **argv){
 	unsigned char * const output_data=output.pixel_data();
 	// On crée une troisième image de la taille de l'image d'entrée qui sera l'image de sortie.
 	pixel inter;
-	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
+	int c=0;
+	for(size_t pixel_index=0 ; pixel_index<width_source*height_source; pixel_index++){
 		unsigned char blue=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
     	unsigned char red=source_data[3*pixel_index+2];
@@ -65,6 +66,10 @@ int main(int argc, char **argv){
     	}
     	inter.LMS();
     	if (pixel_index==0) {
+    		inter.affiche();
+    	}
+    	if (inter.tab[2][0]<1.0 or inter.tab[1][0]<1.0 or inter.tab[0][0]<1.0) {
+    		c=c+1;
     		inter.affiche();
     	}
     	inter.LAB();
@@ -107,9 +112,9 @@ int main(int argc, char **argv){
 	mean_l=mean_ex_l/(width_source*height_source);
 	mean_a=mean_ex_a/(width_source*height_source);
 	mean_b=mean_ex_b/(width_source*height_source);
-	std_l=pow(std_ex_l/(width_source*height_source), 0.5);
-	std_a=pow(std_ex_a/(width_source*height_source), 0.5);
-	std_b=pow(std_ex_b/(width_source*height_source), 0.5);
+	std_l=sqrt(std_ex_l/(width_source*height_source));
+	std_a=sqrt(std_ex_a/(width_source*height_source));
+	std_b=sqrt(std_ex_b/(width_source*height_source));
 
 	mean_ex_l=0;
 	mean_ex_a=0;
@@ -127,7 +132,7 @@ int main(int argc, char **argv){
 	double std_a_2=0;
 	double std_b_2=0;
 	pixel inter2;
-	for(size_t pixel_index=0 ; pixel_index<width_target*height_target;++pixel_index){
+	for(size_t pixel_index=0 ; pixel_index<width_target*height_target; pixel_index++){
 		unsigned char blue=target_data[3*pixel_index];
     	unsigned char green=target_data[3*pixel_index+1];
     	unsigned char red=target_data[3*pixel_index+2];
@@ -155,15 +160,15 @@ int main(int argc, char **argv){
 	mean_l_2=mean_ex_l/(width_source*height_source);
 	mean_a_2=mean_ex_a/(width_source*height_source);
 	mean_b_2=mean_ex_b/(width_source*height_source);
-	std_l_2=pow(std_ex_l/(width_source*height_source), 0.5);
-	std_a_2=pow(std_ex_a/(width_source*height_source), 0.5);
-	std_b_2=pow(std_ex_b/(width_source*height_source), 0.5);
+	std_l_2=sqrt(std_ex_l/(width_source*height_source));
+	std_a_2=sqrt(std_ex_a/(width_source*height_source));
+	std_b_2=sqrt(std_ex_b/(width_source*height_source));
 	pixel inter3;
 	pixel inter4;
 	unsigned char r;
     unsigned char b;
     unsigned char g;
-	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
+	for(size_t pixel_index=0 ; pixel_index<width_source*height_source; pixel_index++){
 		unsigned char blue=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
     	unsigned char red=source_data[3*pixel_index+2];
@@ -177,9 +182,9 @@ int main(int argc, char **argv){
     	inter4.tab[2][0]=(std_b_2/std_b)*(inter3.tab[2][0] - mean_b) + mean_b_2;
     	inter4.back_to_LMS_from_LAB();
     	inter4.back_to_RGB_from_LMS();
-    	r=floor2(inter4.tab[0][0]);
-    	b=floor2(inter4.tab[2][0]);
-    	g=floor2(inter4.tab[1][0]);
+    	r=round(inter4.tab[0][0]);
+    	b=round(inter4.tab[2][0]);
+    	g=round(inter4.tab[1][0]);
     	output_data[3*pixel_index+2]=r;
     	output_data[3*pixel_index+1]=g;
     	output_data[3*pixel_index]=b;
@@ -190,6 +195,7 @@ int main(int argc, char **argv){
 	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
 	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
 	cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
+	cout << c << endl;
 	//cout << r << ' ' << g << ' ' << b<<endl;
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
