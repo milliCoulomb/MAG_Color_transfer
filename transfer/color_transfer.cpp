@@ -64,18 +64,21 @@ int main(int argc, char **argv){
     	if (pixel_index==0) {
     		inter.affiche();
     	}
-    	inter.LMS();
-    	if (pixel_index==0) {
+    	if (pixel_index==1) {
     		inter.affiche();
     	}
-    	if (inter.tab[2][0]<1.0 or inter.tab[1][0]<1.0 or inter.tab[0][0]<1.0) {
+    	inter.LMS();
+    	/*if (pixel_index==0) {
+    		inter.affiche();
+    	}*/
+    	/*if (inter.tab[2][0]<1.0 or inter.tab[1][0]<1.0 or inter.tab[0][0]<1.0) {
     		c=c+1;
     		inter.affiche();
-    	}
+    	}*/
     	inter.LAB();
-    	if (pixel_index==0) {
+    	/*if (pixel_index==0) {
     		inter.affiche();
-    	}
+    	}*/
     	mean_ex_l=mean_ex_l+inter.tab[0][0];
     	mean_ex_a=mean_ex_a+inter.tab[1][0];
     	mean_ex_b=mean_ex_b+inter.tab[2][0];
@@ -174,11 +177,11 @@ int main(int argc, char **argv){
 	}
 	//inter3.affiche();
 	//inter4.affiche();
-	cout << std_l << ' ' << std_a << ' ' << std_b <<endl;
+	/*cout << std_l << ' ' << std_a << ' ' << std_b <<endl;
 	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
 	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
 	cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
-	cout << c << endl;
+	cout << c << endl;*/
 	//cout << r << ' ' << g << ' ' << b<<endl;
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
