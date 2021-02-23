@@ -55,9 +55,9 @@ int main(int argc, char **argv){
 	pixel inter;
 	int c=0;
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source; pixel_index++){
-		unsigned char blue=source_data[3*pixel_index];
+		unsigned char red=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
-    	unsigned char red=source_data[3*pixel_index+2];
+    	unsigned char blue=source_data[3*pixel_index+2];
     	inter.tab[2][0]=double(blue);
     	inter.tab[1][0]=double(green);
     	inter.tab[0][0]=double(red);
@@ -91,24 +91,7 @@ int main(int argc, char **argv){
     	std_ex_b=std_ex_b + (inter.tab[2][0]-M_b)*(inter.tab[2][0]-old_M_b);
     	//puis mettre dans un objet pixel et appliquer les changements de bases et les stats.
 	}
-	/*
-	double std_l_corr=0;
-	double std_a_corr=0;
-	double std_b_corr=0;
-	for(size_t pixel_index=0 ; pixel_index<width_source*height_source;++pixel_index){
-		unsigned char blue=source_data[3*pixel_index];
-    	unsigned char green=source_data[3*pixel_index+1];
-    	unsigned char red=source_data[3*pixel_index+2];
-    	inter.tab[2][0]=blue;
-    	inter.tab[1][0]=green;
-    	inter.tab[0][0]=red;
-    	inter.LMS();
-    	inter.LAB();
-
-    	
-	}
-	*/
-	//inter.affiche();
+	
 	mean_l=mean_ex_l/(width_source*height_source);
 	mean_a=mean_ex_a/(width_source*height_source);
 	mean_b=mean_ex_b/(width_source*height_source);
@@ -133,9 +116,9 @@ int main(int argc, char **argv){
 	double std_b_2=0;
 	pixel inter2;
 	for(size_t pixel_index=0 ; pixel_index<width_target*height_target; pixel_index++){
-		unsigned char blue=target_data[3*pixel_index];
+		unsigned char red=target_data[3*pixel_index];
     	unsigned char green=target_data[3*pixel_index+1];
-    	unsigned char red=target_data[3*pixel_index+2];
+    	unsigned char blue=target_data[3*pixel_index+2];
     	inter2.tab[2][0]=blue;
     	inter2.tab[1][0]=green;
     	inter2.tab[0][0]=red;
@@ -169,9 +152,9 @@ int main(int argc, char **argv){
     unsigned char b;
     unsigned char g;
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source; pixel_index++){
-		unsigned char blue=source_data[3*pixel_index];
+		unsigned char red=source_data[3*pixel_index];
     	unsigned char green=source_data[3*pixel_index+1];
-    	unsigned char red=source_data[3*pixel_index+2];
+    	unsigned char blue=source_data[3*pixel_index+2];
     	inter3.tab[2][0]=blue;
     	inter3.tab[1][0]=green;
     	inter3.tab[0][0]=red;
@@ -185,9 +168,9 @@ int main(int argc, char **argv){
     	r=round(inter4.tab[0][0]);
     	b=round(inter4.tab[2][0]);
     	g=round(inter4.tab[1][0]);
-    	output_data[3*pixel_index+2]=r;
+    	output_data[3*pixel_index+2]=b;
     	output_data[3*pixel_index+1]=g;
-    	output_data[3*pixel_index]=b;
+    	output_data[3*pixel_index]=r;
 	}
 	//inter3.affiche();
 	//inter4.affiche();
