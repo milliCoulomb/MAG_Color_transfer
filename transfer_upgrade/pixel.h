@@ -7,9 +7,6 @@
 class pixel : public matrix
 {
  private :
-  double p_red;
-  double p_green;
-  double p_blue;
   int lines=3;
   int rows=1;
  public :
@@ -17,12 +14,9 @@ class pixel : public matrix
   ~pixel();
   int get_lines() const;
   int get_rows() const;
-  double get_red() const;
-  double get_green() const;
-  double get_blue() const;
-  void set_red(const double red);
-  void set_green(const double green);
-  void set_blue(const double blue);
+  double RLl() const;
+  double GMa() const;
+  double BSb() const;
   void LMS() const;
   void LAB() const;
   void back_to_LMS_from_LAB() const;

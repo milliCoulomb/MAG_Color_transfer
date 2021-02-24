@@ -9,6 +9,7 @@ int pixel::get_lines() const {
 int pixel::get_rows() const {
   	return rows;
 }
+/*
 double pixel::get_red() const {
 	return p_red;
 }
@@ -26,7 +27,7 @@ void pixel::set_green(const double green_) {
 }
 void pixel::set_blue(const double blue_) {
 	p_blue=blue_;
-}
+}*/
 
 pixel::pixel() :
 	matrix(3, 1)
@@ -36,8 +37,9 @@ pixel::pixel() :
 
 pixel::~pixel()
 {
-	for (int i=0; i<3; i++) delete tab[i];
+	//for (int i=0; i<3; i++) delete tab[i];
 	//delete tab;
+	//cout << "cc" << endl;
 }
 void pixel::LMS() const {
 	matrix inter(get_lines(), get_rows());
@@ -164,4 +166,13 @@ void pixel::back_to_RGB_from_LMS() const{
 			tab[i][j]=M.tab[i][j];
 		}
 	}
+}
+double pixel::RLl() const {
+	return tab[0][0];
+}
+double pixel::GMa() const {
+	return tab[1][0];
+}
+double pixel::BSb() const {
+	return tab[2][0];
 }

@@ -14,7 +14,7 @@ public :
 
 long double **tab;
 matrix(const int NBligne_, const int NBcolonne_);
-~matrix();
+virtual ~matrix();
 double get_NBligne() const;
 double get_NBcolonne() const;
 void set_NBligne(const int NBligne_);
