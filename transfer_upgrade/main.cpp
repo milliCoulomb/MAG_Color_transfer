@@ -5,9 +5,7 @@
 #include"image.h"
 using namespace std;
 
-int main()
-{
-	int main(int argc, char **argv){
+int main(int argc, char **argv){
 	if (argc <4) {
 		clog << "Tu pensais vraiment que ça allait marcher ?"<< endl;
 		return EXIT_FAILURE;
@@ -20,15 +18,16 @@ int main()
 	size_t width_target=target.width();
   	size_t height_target=target.height();
   	unsigned char const * const target_data=target.pixel_data();
+  	Bmp24 output(width_source, height_source);
 	unsigned char * const output_data=output.pixel_data();
-	image source(source_data, width_source, height_source);
-	image target(target_data, width_target, height_target);
-	target.go_to_LAB();
-	source.go_to_LAB();
-	pixel mean_source = source.mean();
-	pixel std_source = source.std();
-	pixel mean_target  = target.mean();
-	pixel std_target = target.std();
+	image source1(source_data, width_source, height_source);
+	image target1(target_data, width_target, height_target);
+	target1.go_to_LAB();
+	source1.go_to_LAB();
+	pixel mean_source = source1.mean();
+	pixel std_source = source1.std();
+	pixel mean_target  = target1.mean();
+	pixel std_target = target1.std();
 	pixel inter3;
 	pixel inter4;
 	unsigned char r;
