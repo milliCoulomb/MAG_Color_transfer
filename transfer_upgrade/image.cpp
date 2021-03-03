@@ -16,8 +16,9 @@ void image::set_height(int height_) {
   height=height_;
 }
 image::image(unsigned char const * const image_, size_t width_, size_t height_) :
-  matrix(width_, height_), width(width_), height(height_), tab(new pixel*[width])
+  matrix(width_, height_)
 {
+  tab = new pixel*[width];
   for (int i=0; i<width_; i++) {
     tab[i]= new pixel[height_];
   }
