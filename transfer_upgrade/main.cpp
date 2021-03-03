@@ -28,6 +28,8 @@ int main(int argc, char **argv){
 	pixel std_source = source1.std();
 	pixel mean_target  = target1.mean();
 	pixel std_target = target1.std();
+	mean_source.affiche();
+	std_source.affiche();
 	pixel inter;
 	pixel inter_;
 	unsigned char r;
