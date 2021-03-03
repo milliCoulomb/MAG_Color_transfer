@@ -15,7 +15,7 @@ void image::set_width(int width_) {
 void image::set_height(int height_) {
   height=height_;
 }
-image::image(unsigned char const * const image_, size_t width_, size_t height_) :
+image::image(/*unsigned char const * const image_,*/ size_t width_, size_t height_) :
   matrix(width_, height_)
 {
   tab = new pixel*[width];
@@ -26,10 +26,10 @@ image::image(unsigned char const * const image_, size_t width_, size_t height_) 
     for (int j=0; j<height_; j++) {
       pixel chose;
     	tab[i][j]=chose;
-      //tab[i][j].affiche();
+      tab[i][j].affiche();
     }
   }
-  int j=0;
+  /*int j=0;
   int i_old=0;
   for (int i=i_old*3; i<3*3*width_*height_; i++) {
     pixel autre;
@@ -44,6 +44,7 @@ image::image(unsigned char const * const image_, size_t width_, size_t height_) 
       j=j+1;
     }
   }
+  */
 }
 image::~image() {
   for (int i=0; i<get_height(); i++) delete tab[i];

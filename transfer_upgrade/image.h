@@ -11,7 +11,7 @@ class image : public matrix
  	int height;
  public :
  	pixel **tab;
- 	image(unsigned char const * const image_, size_t width_, size_t height_);
+ 	image(/*unsigned char const * const image_,*/ size_t width_, size_t height_);
  	~image();
  	int get_width() const;
   	int get_height() const;
