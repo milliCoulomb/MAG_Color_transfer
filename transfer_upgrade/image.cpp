@@ -34,7 +34,7 @@ image::image(unsigned char const * const image_, size_t width_, size_t height_) 
     for (int i=0; i<height_; i++) {
       pixel autre;
       autre.tab[0][0]=image_[3*i+j*height_*3 +2];
-      autre.tab[1][0]=image_[3*i+j*height_*3+1];
+      autre.tab[1][0]=image_[3*i+j*height_*3 +1];
       autre.tab[2][0]=image_[3*i+j*height_*3];
       tab[i][j]=autre;
     }
@@ -73,9 +73,10 @@ pixel image::mean() const {
       blue = blue + tab[i][j].tab[2][0];
     }
   }
-  stat.tab[0][0]=red/(get_width()*get_height());
-  stat.tab[1][0]=green/(get_width()*get_height());
-  stat.tab[2][0]=blue/(get_width()*get_height());
+  double diviseur = get_width()*get_height();
+  stat.tab[0][0]=red/diviseur;
+  stat.tab[1][0]=green/diviseur;
+  stat.tab[2][0]=blue/diviseur;
   return stat;
 }
 pixel image::std() const {

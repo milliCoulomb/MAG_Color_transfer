@@ -61,13 +61,13 @@ int main(int argc, char **argv){
     	inter.tab[2][0]=double(blue);
     	inter.tab[1][0]=double(green);
     	inter.tab[0][0]=double(red);
-    	if (pixel_index==0) {
+    	/*if (pixel_index==0) {
     		inter.affiche();
     	}
     	if (pixel_index==1) {
     		inter.affiche();
-    	}
-    	inter.LMS();
+    	}*/
+    	//inter.LMS();
     	/*if (pixel_index==0) {
     		inter.affiche();
     	}*/
@@ -75,7 +75,7 @@ int main(int argc, char **argv){
     		c=c+1;
     		inter.affiche();
     	}*/
-    	inter.LAB();
+    	//inter.LAB();
     	/*if (pixel_index==0) {
     		inter.affiche();
     	}*/
@@ -119,9 +119,9 @@ int main(int argc, char **argv){
 	double std_b_2=0;
 	pixel inter2;
 	for(size_t pixel_index=0 ; pixel_index<width_target*height_target; pixel_index++){
-		unsigned char red=target_data[3*pixel_index];
+		unsigned char blue=target_data[3*pixel_index];
     	unsigned char green=target_data[3*pixel_index+1];
-    	unsigned char blue=target_data[3*pixel_index+2];
+    	unsigned char red=target_data[3*pixel_index+2];
     	inter2.tab[2][0]=blue;
     	inter2.tab[1][0]=green;
     	inter2.tab[0][0]=red;
@@ -178,10 +178,10 @@ int main(int argc, char **argv){
 	//inter3.affiche();
 	//inter4.affiche();
 	cout << std_l << ' ' << std_a << ' ' << std_b <<endl;
-	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
+	//cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
 	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
-	cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
-	cout << c << endl;
+	//cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
+	//cout << c << endl;
 	//cout << r << ' ' << g << ' ' << b<<endl;
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;

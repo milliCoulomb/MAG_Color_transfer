@@ -19,10 +19,10 @@ void matrix::set_NBcolonne(int NBcolonne_) {
   NBcolonne=NBcolonne_;
 }
 matrix::matrix(const int NBligne_, const int NBcolonne_) :
-  NBligne(NBligne_), NBcolonne(NBcolonne_), tab(new double*[NBligne])
+  NBligne(NBligne_), NBcolonne(NBcolonne_), tab(new long double*[NBligne])
 {
   for (int i=0; i<NBligne_; i++) {
-    tab[i]= new double[NBcolonne_];
+    tab[i]= new long double[NBcolonne_];
 }
   for (int i=0; i<NBligne_; i++) {
     for (int j=0; j<NBcolonne_; j++) {

@@ -9,37 +9,18 @@ int pixel::get_lines() const {
 int pixel::get_rows() const {
   	return rows;
 }
-double pixel::get_red() const {
-	return p_red;
-}
-double pixel::get_green() const {
-	return p_green;
-}
-double pixel::get_blue() const {
-	return p_blue;
-}
-void pixel::set_red(const double red_) {
-	p_red=red_;
-}
-void pixel::set_green(const double green_) {
-	p_green=green_;
-}
-void pixel::set_blue(const double blue_) {
-	p_blue=blue_;
-}
-
 pixel::pixel() :
 	matrix(3, 1)
 {
-
 	new (this) matrix(3, 1);
 }
 
-/*pixel::~pixel()
+pixel::~pixel()
 {
-	for (int i=0; i<get_lines(); i++) delete tab[i];
-	delete tab;
-}*/
+	//for (int i=0; i<3; i++) delete tab[i];
+	//delete tab;
+	//cout << "cc" << endl;
+}
 void pixel::LMS() const {
 	matrix inter(get_lines(), get_rows());
 	for (int i=0; i<get_lines(); i++) {
@@ -76,6 +57,7 @@ void pixel::LAB() const {
 	lab1.tab[0][0]=1/pow(3, 0.5);
 	lab1.tab[1][1]=1/pow(6, 0.5);
 	lab1.tab[2][2]=1/pow(2, 0.5);
+	//lab1.affiche();
 	matrix lab2(3,3);
 	lab2.tab[0][0]=1.0;
 	lab2.tab[0][1]=1.0;
@@ -89,7 +71,8 @@ void pixel::LAB() const {
 	//lab2.affiche();
 	for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
-			inter.tab[i][j]=log(inter.tab[i][j]);
+			double a = log(inter.tab[i][j]);
+			inter.tab[i][j]=a;
 			// Passage en logarithme des couleurs.
 		}
 	}
@@ -112,6 +95,7 @@ void pixel::back_to_LMS_from_LAB() const{
 	lab1_inv.tab[0][0]=1/pow(3, 0.5);
 	lab1_inv.tab[1][1]=1/pow(6, 0.5);
 	lab1_inv.tab[2][2]=1/pow(2, 0.5);
+	//lab1_inv.affiche();
 	matrix lab2_inv(3,3);
 	lab2_inv.tab[0][0]=1.0;
 	lab2_inv.tab[0][1]=1.0;
@@ -151,7 +135,8 @@ void pixel::back_to_RGB_from_LMS() const{
 	//lms_inv.affiche();
 	for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
-			inter.tab[i][j]=exp(inter.tab[i][j]);
+			double b=exp(inter.tab[i][j]);
+			inter.tab[i][j]=b;
 			//passage en exopnentiel des couleurs, retour vers l'espace RGB.
 		}
 	}
@@ -161,4 +146,13 @@ void pixel::back_to_RGB_from_LMS() const{
 			tab[i][j]=M.tab[i][j];
 		}
 	}
+}
+double pixel::RLl() const {
+	return tab[0][0];
+}
+double pixel::GMa() const {
+	return tab[1][0];
+}
+double pixel::BSb() const {
+	return tab[2][0];
 }

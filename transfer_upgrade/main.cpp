@@ -29,18 +29,21 @@ int main(int argc, char **argv){
 	image target1(target_data, width_target, height_target);
 	target1.set_height(height_target);
 	target1.set_width(width_target);
-
+	
 	target1.go_to_LAB();
 	source1.go_to_LAB();
 
 	pixel mean_source = source1.mean();
 	pixel std_source = source1.std();
 
+	mean_source.affiche();
+	std_source.affiche();
+
 	pixel mean_target  = target1.mean();
 	pixel std_target = target1.std();
 
-	mean_source.affiche();
-	std_source.affiche();
+	//mean_source.affiche();
+	//std_source.affiche();
 	pixel inter;
 	pixel inter_;
 	unsigned char r;
@@ -55,9 +58,9 @@ int main(int argc, char **argv){
     	inter.tab[0][0]=red;
     	inter.LMS();
     	inter.LAB();
-    	inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_target.tab[0][0])+mean_source.tab[0][0];
-    	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_target.tab[1][0])+mean_source.tab[1][0];
-    	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_target.tab[2][0])+mean_source.tab[2][0];
+    	inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_source.tab[0][0])+mean_target.tab[0][0];
+    	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_source.tab[1][0])+mean_target.tab[1][0];
+    	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_source.tab[2][0])+mean_target.tab[2][0];
     	/*inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_source.tab[0][0])+mean_target.tab[0][0];
     	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_source.tab[1][0])+mean_target.tab[1][0];
     	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_source.tab[2][0])+mean_target.tab[2][0];*/
