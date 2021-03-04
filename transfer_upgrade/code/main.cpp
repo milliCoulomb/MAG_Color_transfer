@@ -41,9 +41,6 @@ int main(int argc, char **argv){
 
 	pixel mean_target  = target1.mean();
 	pixel std_target = target1.std();
-
-	//mean_source.affiche();
-	//std_source.affiche();
 	pixel inter;
 	pixel inter_;
 	unsigned char r;
@@ -61,17 +58,17 @@ int main(int argc, char **argv){
     	inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_source.tab[0][0])+mean_target.tab[0][0];
     	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_source.tab[1][0])+mean_target.tab[1][0];
     	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_source.tab[2][0])+mean_target.tab[2][0];
-    	/*inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_source.tab[0][0])+mean_target.tab[0][0];
-    	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_source.tab[1][0])+mean_target.tab[1][0];
-    	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_source.tab[2][0])+mean_target.tab[2][0];*/
+    	/*inter_.tab[0][0]=(std_source.tab[0][0]/std_target.tab[0][0])*(inter.tab[0][0] - mean_target.tab[0][0])+mean_source.tab[0][0];
+    	inter_.tab[1][0]=(std_source.tab[1][0]/std_target.tab[1][0])*(inter.tab[1][0] - mean_target.tab[1][0])+mean_source.tab[1][0];
+    	inter_.tab[2][0]=(std_source.tab[2][0]/std_target.tab[2][0])*(inter.tab[2][0] - mean_target.tab[2][0])+mean_source.tab[2][0];*/
     	inter_.back_to_LMS_from_LAB();
     	inter_.back_to_RGB_from_LMS();
     	r=round(inter_.tab[0][0]);
     	b=round(inter_.tab[2][0]);
     	g=round(inter_.tab[1][0]);
     	output_data[3*pixel_index+2]=r;
-    	output_data[3*pixel_index+1]=b;
-    	output_data[3*pixel_index]=g;
+    	output_data[3*pixel_index+1]=g;
+    	output_data[3*pixel_index]=b;
 	}
 	//cout << test1 << ' ' << test2 << ' ' << test3 <<endl;
 	bool ok = output.write_file(argv[3]);
