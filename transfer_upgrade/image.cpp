@@ -26,29 +26,10 @@ image::image(unsigned char const * const image_, size_t width_, size_t height_) 
     for (int j=0; j<width_; j++) {
       pixel chose;
     	tab[i][j]=chose;
-      //tab[i][j].affiche();
     }
   }
   int j=0;
   int c=0;
-  /*for (int i=0; i<height_*width_; i++) {
-    pixel autre;
-    autre.tab[0][0]=image_[3*i];
-    autre.tab[1][0]=image_[3*i+1];
-    autre.tab[2][0]=image_[3*i+2];
-    if (i%(width_-1)==0){
-      if (j<height_-1){
-        j=j+1;
-      }
-      c=c+1;
-      tab[j][0]=autre;
-      cout << j << endl;
-    }
-    else {
-      tab[j][int(i/(1+c*width_))]=autre;
-    }
-
-  }*/
   while (j<width_) {
     for (int i=0; i<height_; i++) {
       pixel autre;
@@ -71,8 +52,6 @@ void image::go_to_LAB() const {
       tab[i][j].LAB();
     }
   }
-  cout << get_height() << endl;
-  cout << get_width() << endl;
 }
 void image::go_to_RGB() const {
   for (int i=0; i<get_height(); i++) {
