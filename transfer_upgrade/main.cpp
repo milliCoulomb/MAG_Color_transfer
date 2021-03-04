@@ -58,6 +58,9 @@ int main(int argc, char **argv){
     	inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_target.tab[0][0])+mean_source.tab[0][0];
     	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_target.tab[1][0])+mean_source.tab[1][0];
     	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_target.tab[2][0])+mean_source.tab[2][0];
+    	/*inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_source.tab[0][0])+mean_target.tab[0][0];
+    	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_source.tab[1][0])+mean_target.tab[1][0];
+    	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_source.tab[2][0])+mean_target.tab[2][0];*/
     	inter_.back_to_LMS_from_LAB();
     	inter_.back_to_RGB_from_LMS();
     	r=round(inter_.tab[0][0]);
