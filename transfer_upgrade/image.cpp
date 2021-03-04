@@ -31,7 +31,7 @@ image::image(unsigned char const * const image_, size_t width_, size_t height_) 
   }
   int j=0;
   int c=0;
-  for (int i=0; i<height_*width_; i++) {
+  /*for (int i=0; i<height_*width_; i++) {
     pixel autre;
     autre.tab[0][0]=image_[3*i];
     autre.tab[1][0]=image_[3*i+1];
@@ -48,11 +48,21 @@ image::image(unsigned char const * const image_, size_t width_, size_t height_) 
       tab[j][int(i/(1+c*width_))]=autre;
     }
 
+  }*/
+  while (j<width_) {
+    for (int i=0; i<height_; i++) {
+      pixel autre;
+      autre.tab[0][0]=image_[3*i+j*height_*3 +2];
+      autre.tab[1][0]=image_[3*i+j*height_*3+1];
+      autre.tab[2][0]=image_[3*i+j*height_*3];
+      tab[i][j]=autre;
+    }
+    j=j+1;
   }
 }
 image::~image() {
-  for (int i=0; i<get_height(); i++) delete tab[i];
-  delete tab;
+  //for (int i=0; i<get_height(); i++) delete tab[i];
+  //delete tab;
 }
 void image::go_to_LAB() const {
   for (int i=0; i<get_height(); i++) {
@@ -61,6 +71,8 @@ void image::go_to_LAB() const {
       tab[i][j].LAB();
     }
   }
+  cout << get_height() << endl;
+  cout << get_width() << endl;
 }
 void image::go_to_RGB() const {
   for (int i=0; i<get_height(); i++) {
