@@ -177,11 +177,11 @@ int main(int argc, char **argv){
 	}
 	//inter3.affiche();
 	//inter4.affiche();
-	/*cout << std_l << ' ' << std_a << ' ' << std_b <<endl;
+	cout << std_l << ' ' << std_a << ' ' << std_b <<endl;
 	cout << std_l_2 << ' ' << std_a_2 << ' ' << std_b_2 <<endl;
 	cout << mean_l << ' ' << mean_a << ' ' << mean_b <<endl;
 	cout << mean_l_2 << ' ' << mean_a_2 << ' ' << mean_b_2 <<endl;
-	cout << c << endl;*/
+	cout << c << endl;
 	//cout << r << ' ' << g << ' ' << b<<endl;
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
