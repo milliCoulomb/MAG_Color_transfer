@@ -47,9 +47,6 @@ int main(int argc, char **argv){
 	unsigned char r;
     unsigned char b;
     unsigned char g;
-    int NBr=0;
-    int NBb=0;
-    int NBv=0;
 	for(size_t pixel_index=0 ; pixel_index<width_source*height_source; pixel_index++){
 		unsigned char red=source_data[3*pixel_index+2];
     	unsigned char green=source_data[3*pixel_index+1];
@@ -57,28 +54,18 @@ int main(int argc, char **argv){
     	inter.tab[2][0]=blue;
     	inter.tab[1][0]=green;
     	inter.tab[0][0]=red;
+        if (inter_.tab[0][0]==0 and inter_.tab[1][0]==0 and inter_.tab[2][0]==0) {
+            inter_.tab[0][0]=1;
+            inter_.tab[1][0]=1;
+            inter_.tab[2][0]=1;
+        }
     	inter.LMS();
     	inter.LAB();
     	inter_.tab[0][0]=(std_target.tab[0][0]/std_source.tab[0][0])*(inter.tab[0][0] - mean_source.tab[0][0])+mean_target.tab[0][0];
     	inter_.tab[1][0]=(std_target.tab[1][0]/std_source.tab[1][0])*(inter.tab[1][0] - mean_source.tab[1][0])+mean_target.tab[1][0];
     	inter_.tab[2][0]=(std_target.tab[2][0]/std_source.tab[2][0])*(inter.tab[2][0] - mean_source.tab[2][0])+mean_target.tab[2][0];
-    	/*inter_.tab[0][0]=(std_source.tab[0][0]/std_target.tab[0][0])*(inter.tab[0][0] - mean_target.tab[0][0])+mean_source.tab[0][0];
-    	inter_.tab[1][0]=(std_source.tab[1][0]/std_target.tab[1][0])*(inter.tab[1][0] - mean_target.tab[1][0])+mean_source.tab[1][0];
-    	inter_.tab[2][0]=(std_source.tab[2][0]/std_target.tab[2][0])*(inter.tab[2][0] - mean_target.tab[2][0])+mean_source.tab[2][0];*/
     	inter_.back_to_LMS_from_LAB();
     	inter_.back_to_RGB_from_LMS();
-        if (inter_.tab[0][0]>255.0) { 
-            NBr = NBr+1;
-            inter_.tab[0][0]=255.0;
-        }
-        if (inter_.tab[2][0]>255.0) { 
-            NBb = NBb+1;
-            inter_.tab[2][0]=255.0;
-        }
-        if (inter_.tab[1][0]>255.0) { 
-            NBv = NBv+1;
-            inter_.tab[1][0]=255.0;
-        }
         r=inter_.tab[0][0];
     	b=inter_.tab[2][0];
     	g=inter_.tab[1][0];
@@ -86,10 +73,6 @@ int main(int argc, char **argv){
     	output_data[3*pixel_index+1]=g;
     	output_data[3*pixel_index]=b;
 	}
-	cout << " Nombre de pixels rouges supérieur à 255 : " << NBr<<endl;
-    cout << " Nombre de pixels bleus supérieur à 255 : " << NBb<<endl;
-    cout << " Nombre de pixels verts supérieur à 255 : " << NBv<<endl;
-
 	bool ok = output.write_file(argv[3]);
 	return (ok && cout.good()) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
