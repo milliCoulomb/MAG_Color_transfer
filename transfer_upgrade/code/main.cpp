@@ -54,10 +54,10 @@ int main(int argc, char **argv){
     	inter.tab[2][0]=blue;
     	inter.tab[1][0]=green;
     	inter.tab[0][0]=red;
-        if (inter_.tab[0][0]==0 and inter_.tab[1][0]==0 and inter_.tab[2][0]==0) {
-            inter_.tab[0][0]=1;
-            inter_.tab[1][0]=1;
-            inter_.tab[2][0]=1;
+        if (inter.tab[0][0]==0 and inter.tab[1][0]==0 and inter.tab[2][0]==0) {
+            inter.tab[0][0]=1;
+            inter.tab[1][0]=1;
+            inter.tab[2][0]=1;
         }
     	inter.LMS();
     	inter.LAB();

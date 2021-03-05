@@ -38,7 +38,6 @@ void pixel::LMS() const {
 	lms.tab[2][0]=0.0241;
 	lms.tab[2][1]=0.1288;
 	lms.tab[2][2]=0.8444;
-	//lms.affiche();
     matrix Z = lms.prod(inter);
     for (int i=0; i<3; i++) {
 		for (int j=0; j<1; j++){
@@ -57,7 +56,6 @@ void pixel::LAB() const {
 	lab1.tab[0][0]=1/sqrt(3);
 	lab1.tab[1][1]=1/sqrt(6);
 	lab1.tab[2][2]=1/sqrt(2);
-	//lab1.affiche();
 	matrix lab2(3,3);
 	lab2.tab[0][0]=1.0;
 	lab2.tab[0][1]=1.0;
@@ -68,13 +66,12 @@ void pixel::LAB() const {
 	lab2.tab[2][0]=1.0;
 	lab2.tab[2][1]=-1.0;
 	lab2.tab[2][2]=0.0;
-	//lab2.affiche();
-	if (tab[0][0]==0 and tab[1][0]==0 and tab[2][0]==0) {
+	if (inter.tab[0][0]==0 and inter.tab[1][0]==0 and inter.tab[2][0]==0) {
         tab[0][0]=0;
-        tab[1][0]=1;
-        tab[2][0]=1;
+        tab[1][0]=0;
+        tab[2][0]=0;
     }
-    else {
+    if (inter.tab[0][0]!=0 or inter.tab[1][0]!=0 or inter.tab[2][0]!=0) {
 		for (int i=0; i<get_lines(); i++) {
 			for (int j=0; j<get_rows(); j++){
 				double a = log(inter.tab[i][j]);
@@ -149,22 +146,22 @@ void pixel::back_to_RGB_from_LMS() const{
 			tab[i][j]=M.tab[i][j];
 		}
 	}
-	if (tab[0][0]>255.0) { 
+	if (M.tab[0][0]>=255.0) { 
         tab[0][0]=255.0;
     }
-    if (tab[1][0]>255.0) { 
+    if (M.tab[1][0]>=255.0) { 
         tab[1][0]=255.0;
     }
-    if (tab[2][0]>255.0) { 
+    if (M.tab[2][0]>=255.0) { 
         tab[2][0]=255.0;
     }
-    if (tab[0][0]<0) { 
+    if (M.tab[0][0]<0) { 
         tab[0][0]=0;
     }
-    if (tab[1][0]<0) { 
+    if (M.tab[1][0]<0) { 
         tab[1][0]=0;
     }
-    if (tab[2][0]<0) { 
+    if (M.tab[2][0]<0) { 
         tab[2][0]=0;
     }
 
