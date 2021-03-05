@@ -9,19 +9,24 @@ M4 = M3.T
 M5 = M2
 M6 = np.array([[4.4679, -3.5873, 0.1193], [-1.2186, 2.3809, -0.1624], [0.0497, -0.2439, 1.2045]])
 
-img_cible = Image.open("mathis2.bmp")
-img_source = Image.open("mathis1.bmp")
+img_cible = Image.open("Mathis2.png")
+img_source = Image.open("Mathis1.png")
+
 img_source_LMS = np.dot(img_source, M1)
 img_cible_LMS = np.dot(img_cible, M1)
-img_source_lab = np.dot(np.log(img_source_LMS), np.dot(M2, M3))
-img_cible_lab = np.dot(np.log(img_cible_LMS), np.dot(M2, M3))
+
+img_source_lab = np.dot(np.log(img_source_LMS),np.dot(M2, M3))
+img_cible_lab = np.dot(np.log(img_cible_LMS),np.dot(M2, M3))
+
 mean_source_lab, std_source_lab = np.mean(img_source_lab, axis=(0, 1)), np.std(img_source_lab, axis=(0, 1))
 mean_cible_lab, std_cible_lab = np.mean(img_cible_lab, axis=(0, 1)), np.std(img_cible_lab, axis=(0, 1))
 img_transfer_lab = (std_cible_lab / std_source_lab * (img_source_lab - mean_source_lab)) +mean_cible_lab
+
 img_transfer_LMS = np.dot(img_transfer_lab, np.dot(M4, M5))
 img_transfer = np.dot(np.exp(img_transfer_LMS), M6)
+
 result = Image.fromarray(img_transfer.astype(np.uint8))
-result.save('mathis3.bmp')
+result.save('Mathis3.png')
 #print(std_source_lab)
 #print(std_cible_lab)
 print(mean_source_lab)

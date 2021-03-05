@@ -76,8 +76,8 @@ void pixel::LAB() const {
 			// Passage en logarithme des couleurs.
 		}
 	}
-	matrix M2=lab2.prod(inter);
-    matrix M3=lab1.prod(M2);
+	matrix M=lab1.prod(lab2);
+    matrix M3=M.prod(inter);
     for (int i=0; i<3; i++) {
 		for (int j=0; j<1; j++){
 			tab[i][j]=M3.tab[i][j];
@@ -107,8 +107,8 @@ void pixel::back_to_LMS_from_LAB() const{
 	lab2_inv.tab[2][1]=-2.0;
 	lab2_inv.tab[2][2]=0.0;
 	//lab2_inv.affiche();
-	matrix M3=lab1_inv.prod(inter);
-	matrix M4 = lab2_inv.prod(M3);
+	matrix M=lab2_inv.prod(lab1_inv);
+	matrix M4 = M.prod(inter);
     for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
 			tab[i][j]=M4.tab[i][j];
