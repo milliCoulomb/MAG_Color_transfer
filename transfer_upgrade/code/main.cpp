@@ -29,10 +29,10 @@ int main(int argc, char **argv){
 	image target1(target_data, width_target, height_target);
 	target1.set_height(height_target);
 	target1.set_width(width_target);
-	
+	//Remplissage des objets image et définition des hauteurs et largeurs.
 	target1.go_to_LAB();
 	source1.go_to_LAB();
-
+    //Transfert vers l'esapce LAB
 	pixel mean_source = source1.mean();
 	pixel std_source = source1.std();
 
@@ -67,28 +67,21 @@ int main(int argc, char **argv){
     	inter_.tab[2][0]=(std_source.tab[2][0]/std_target.tab[2][0])*(inter.tab[2][0] - mean_target.tab[2][0])+mean_source.tab[2][0];*/
     	inter_.back_to_LMS_from_LAB();
     	inter_.back_to_RGB_from_LMS();
-    	//r=round(inter_.tab[0][0]);
-    	//b=round(inter_.tab[2][0]);
-    	//g=round(inter_.tab[1][0]);
-
         if (inter_.tab[0][0]>255.0) { 
-        //cout << " pixel indice : " << " " << pixel_index << "bet voila la valeur de r : " << inter_.tab[0][0] <<endl; 
-        NBr = NBr+1;
-        inter_.tab[0][0]=255.0;
-}
+            NBr = NBr+1;
+            inter_.tab[0][0]=255.0;
+        }
         if (inter_.tab[2][0]>255.0) { 
-       //cout << " pixel indice : " << " " << pixel_index << " et voila la valeur de b : " << inter_.tab[2][0] <<endl; 
-        NBb = NBb+1;
-        inter_.tab[2][0]=255.0;}
+            NBb = NBb+1;
+            inter_.tab[2][0]=255.0;
+        }
         if (inter_.tab[1][0]>255.0) { 
-        //cout << " pixel indice : " << " " << pixel_index << " et voila la valeur de g : " << inter_.tab[1][0] <<endl;
-        NBv = NBv+1;
-        inter_.tab[1][0]=255.0;}
-
+            NBv = NBv+1;
+            inter_.tab[1][0]=255.0;
+        }
         r=inter_.tab[0][0];
     	b=inter_.tab[2][0];
     	g=inter_.tab[1][0];
-
     	output_data[3*pixel_index+2]=r;
     	output_data[3*pixel_index+1]=g;
     	output_data[3*pixel_index]=b;
