@@ -28,6 +28,11 @@ void pixel::LMS() const {
 			inter.tab[i][j]=tab[i][j];
 		}
 	}
+	if (inter.tab[0][0]==0 and inter.tab[1][0]==0 and inter.tab[2][0]==0) {
+        inter.tab[0][0]=1;
+        inter.tab[1][0]=1;
+        inter.tab[2][0]=1;
+    }
 	matrix lms(3,3);
 	lms.tab[0][0]=0.3811;
 	lms.tab[0][1]=0.5783;
@@ -66,25 +71,18 @@ void pixel::LAB() const {
 	lab2.tab[2][0]=1.0;
 	lab2.tab[2][1]=-1.0;
 	lab2.tab[2][2]=0.0;
-	if (inter.tab[0][0]==0 and inter.tab[1][0]==0 and inter.tab[2][0]==0) {
-        tab[0][0]=0;
-        tab[1][0]=0;
-        tab[2][0]=0;
-    }
-    if (inter.tab[0][0]!=0 or inter.tab[1][0]!=0 or inter.tab[2][0]!=0) {
-		for (int i=0; i<get_lines(); i++) {
-			for (int j=0; j<get_rows(); j++){
-				double a = log(inter.tab[i][j]);
-				inter.tab[i][j]=a;
-				// Passage en logarithme des couleurs.
-			}
+	for (int i=0; i<get_lines(); i++) {
+		for (int j=0; j<get_rows(); j++){
+			double a = log(inter.tab[i][j]);
+			inter.tab[i][j]=a;
+			// Passage en logarithme des couleurs.
 		}
-		matrix M=lab1.prod(lab2);
-	    matrix M3=M.prod(inter);
-	    for (int i=0; i<3; i++) {
-			for (int j=0; j<1; j++){
-				tab[i][j]=M3.tab[i][j];
-			}
+	}
+	matrix M=lab1.prod(lab2);
+	matrix M3=M.prod(inter);
+	for (int i=0; i<get_lines(); i++) {
+		for (int j=0; j<get_rows(); j++){
+			tab[i][j]=M3.tab[i][j];
 		}
 	}
 }
@@ -133,6 +131,7 @@ void pixel::back_to_RGB_from_LMS() const{
 	lms_inv.tab[1][2]=-0.1624;
 	lms_inv.tab[2][0]=0.0497;
 	lms_inv.tab[2][1]=-0.2439;
+	lms_inv.tab[2][2]=1.2045;
 	for (int i=0; i<get_lines(); i++) {
 		for (int j=0; j<get_rows(); j++){
 			double b=exp(inter.tab[i][j]);
@@ -155,14 +154,14 @@ void pixel::back_to_RGB_from_LMS() const{
     if (M.tab[2][0]>=255.0) { 
         tab[2][0]=255.0;
     }
-    if (M.tab[0][0]<0) { 
-        tab[0][0]=0;
+    if (M.tab[0][0]<0.0) { 
+        tab[0][0]=0.0;
     }
-    if (M.tab[1][0]<0) { 
-        tab[1][0]=0;
+    if (M.tab[1][0]<0.0) { 
+        tab[1][0]=0.0;
     }
-    if (M.tab[2][0]<0) { 
-        tab[2][0]=0;
+    if (M.tab[2][0]<0.0) { 
+        tab[2][0]=0.0;
     }
 
 }
