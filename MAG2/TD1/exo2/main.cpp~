@@ -1,9 +1,0 @@
-#include<iostream>
-#include"fct.h"
-using namespace std;
-int main() {
-  double x = 2;
-  double y = 3;
-  cout << affiche(x, y) <<endl;
-  return 0;
-}

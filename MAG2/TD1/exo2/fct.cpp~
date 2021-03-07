@@ -1,4 +1,0 @@
-double affiche(double a, double b) {
-  char nombre = a+ "i"+b;
-  return nombre;
-}
