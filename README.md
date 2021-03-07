@@ -1,6 +1,6 @@
 # C++ project, color transfer, magistère de Physique d'Orsay.
-C++ program to transfer color from an image to another using a target image (only works for BMP 24 images). The method is depicted in [Color Transfer between Images](https://www.cs.tau.ac.il/~turkel/imagepapers/ColorTransfer.pdf). We included two programs. Both one can be found in the ***color_transdfer_v2*** folder, under the name of transfert and color_transfer.py. 
-To successfully use the scripts, compile ***transfer.cpp*** with ***matrix.cpp***, ***pixel.cpp***, ***image.cpp*** and ***bmp_io.cc*** (or use the bash script provided in the folder with `` $ sh transfert.sh``. 
+C++ program to transfer color from an image to another using a target image (only works for BMP 24 images). The method is depicted in [Color Transfer between Images](https://www.cs.tau.ac.il/~turkel/imagepapers/ColorTransfer.pdf). We included two programs. Both one can be found in the ***color_transfer_v2*** folder, under the name of transfert and color_transfer.py. 
+To successfully use the scripts, compile ***main.cpp*** with ***matrix.cpp***, ***pixel.cpp***, ***image.cpp*** and ***bmp_io.cc*** (or use the bash script provided in the folder with `` $ sh transfert.sh``. 
 Then, execute the executable with three arguments, the first one is **the source file**, the image that will be transfered. The second argument is the colorimetric **target** image. The third one is the name of the **output** file. The second program is a Python script which realises the same tasks using numpy and PIL.
 
 Features provided in the repository:
