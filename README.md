@@ -12,4 +12,4 @@ Features provided in the repository:
 To successfully use the scripts, compile ***main.cpp*** with ***matrix.cpp***, ***pixel.cpp***, ***image.cpp*** and ***bmp_io.cc*** (or use the bash script provided in the folder with `` $ sh transfert.sh``. 
 Then, execute the executable with three arguments, the first one is **the source file**, the image that will be transfered. The second argument is the colorimetric **target** image. The third one is the name of the **output** file. The second program is a Python script which realises the same tasks using numpy and PIL.
 
-![alt text](https://github.com/Universal-AC/MAG_Color_transfer/blob/master/diag.jpg?raw=true)
+![alt text](https://github.com/Universal-AC/MAG_Color_transfer/blob/master/diag.png?raw=true)
