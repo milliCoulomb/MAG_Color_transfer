@@ -2,7 +2,9 @@
 
 ![alt text](https://github.com/Universal-AC/MAG_Color_transfer/blob/master/preview.png?raw=true)
 
-C++ program to transfer color from an image to another using a target image (only works for BMP 24 images). The method is depicted in [Color Transfer between Images](https://www.cs.tau.ac.il/~turkel/imagepapers/ColorTransfer.pdf). We included two programs. C++ script can be found in the ***color_transfer_v2*** folder, under the name of transfert and color_transfer.py (please note that color_transfer_v1 is deprecated). The Python script is located in the Python folder.
+[center]*From left to right, the source image, the target image and the image obtained via the script.*[/center]
+
+C++ program to transfer color from an image to another using a target image (only works for BMP 24 images). The method is depicted in [Color Transfer between Images](https://www.cs.tau.ac.il/~turkel/imagepapers/ColorTransfer.pdf). We included two programs. C++ script can be found in the ***color_transfer_v2*** folder, under the name of transfert (please note that color_transfer_v1 is deprecated). The Python script is located in the Python folder.
 
 Features provided in the repository:
 
@@ -14,8 +16,15 @@ Features provided in the repository:
 
 For the users:
 
-* To successfully use the scripts, compile ***main.cpp*** with ***matrix.cpp***, ***pixel.cpp***, ***image.cpp*** and ***bmp_io.cc***. Type ``$ sh transfert.sh`` in your terminal and a ***transfert*** executable will appear in your folder. 
-* Then, execute the executable with three arguments, the first one is **the source file**, the image that will be transfered. The second argument is the colorimetric **target** image. For instance, ``$ ./transfert source.bmp cible.bmp out.bmp``.
-* The second program is a Python script which realises the same tasks using numpy and PIL. To use it, just put the **source.bmp** and **cible.bmp** in the Python folder and use the command line : `` $ python3 color_transfer.py ``. It will generate a **out.bmp** file (you can change these files by changing the Python script, don't forget to do it).
+* To successfully use the scripts, compile ***main.cpp*** with ***matrix.cpp***, ***pixel.cpp***, ***image.cpp*** and ***bmp_io.cc***. Type:
+>``$ sh transfert.sh``
+in your terminal and a ***transfert*** executable will appear in your folder. 
+* Then, execute the executable with three arguments, the first one is **the source file**, the image that will be transfered. The second argument is the colorimetric **target** image. For instance, 
+>``$ ./transfert source.bmp cible.bmp out.bmp``.
+* The second program is a Python script which realises the same tasks using numpy and PIL. To use it, just put the **source.bmp** and **cible.bmp** in the Python folder and use the command line : 
+>`` $ python3 color_transfer.py ``. 
+It will generate a **out.bmp** file (you can change these files by changing the Python script, don't forget to do it).
+
+We summed up all these informations in the following class diagram:
 
 ![alt text](https://github.com/Universal-AC/MAG_Color_transfer/blob/master/diag.png?raw=true)
