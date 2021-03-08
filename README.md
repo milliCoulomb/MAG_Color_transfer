@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/Universal-AC/MAG_Color_transfer/blob/master/preview.png?raw=true)
 
-<div align="center">*From left to right, the source image, the target image and the image obtained via the script.*
+<div align="center"> *From left to right, the source image, the target image and the image obtained via the script.* </div>
 
 C++ program to transfer color from an image to another using a target image (only works for BMP 24 images). The method is depicted in [Color Transfer between Images](https://www.cs.tau.ac.il/~turkel/imagepapers/ColorTransfer.pdf). We included two programs. C++ script can be found in the ***color_transfer_v2*** folder, under the name of transfert (please note that color_transfer_v1 is deprecated). The Python script is located in the Python folder.
 
